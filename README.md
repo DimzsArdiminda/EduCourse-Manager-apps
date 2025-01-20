@@ -13,11 +13,11 @@ Requrement Data
     - Tanggal Pendaftaran
     - Status Pembayaran (Lunas/Belum Lunas)
 
-3. Migration Seeders 
+3. Migration Seeders  (v)
     - 5 kursus.
     - 10 siswa.
 
-3. Auth menggunakan Breeze 
+3. Auth menggunakan Breeze (v)
 
 Ketentuan Teknis:
 1. **Framework:** Laravel (versi terbaru yang stabil). (v)
@@ -40,6 +40,6 @@ Bonus Poin:
 
 Deadline 28 january 
 Backend 
-Auth
+Auth 
 Frontend
 Bonus poin
