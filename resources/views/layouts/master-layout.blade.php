@@ -43,6 +43,28 @@
         padding: 0.5rem 1rem;
         margin: 0 0.25rem;
     }
+
+    @media (max-width: 768px) {
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            padding: 0.25rem 0.5rem;
+            margin: 0 0.125rem;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+            padding: 0.25rem 0.5rem;
+            margin: 0 0.125rem;
+        }
+
+        .dataTables_wrapper .dataTables_filter input {
+            width: 100%;
+            max-width: 150px;
+        }
+
+        .dataTables_wrapper .dataTables_length select {
+            width: 100%;
+            max-width: 100px;
+        }
+    }
          /* Styling untuk Search Bar */
     .dataTables_wrapper .dataTables_filter input {
         padding: 0.25rem;
@@ -89,10 +111,10 @@
     </style>
     <title>@yield('title', 'Educourse')</title>
 </head>
-<body class="font-sans antialiased">
+<body class="font-sans antialiased ">
     @include('layouts.sidebar')
 
-    <div class="min-h-screen bg-gray-100">
+    <div class="min-h-screen dark:bg-gray-700 dark:text-gray-200  ">
         <div class="p-4 sm:ml-64">
             @yield('content')
         </div>
@@ -108,10 +130,21 @@
     <script src="{{ asset('/app.js') }}"></script>
 
    <script>
+     function confirmDelete(courseId) {
+    Swal.fire({
+      title: 'Delete data ?',
+      showCancelButton: true,
+      reverseButtons: false,
+    }).then((result) => {
+      if (result.value) {
+        document.getElementById('delete-form-' + courseId).submit();
+      }
+    });
+  }
      $(document).ready(function () {
     $('#courses-table').DataTable({
         responsive: true,
-        pageLength: 2,
+        pageLength: 3,
 
         lengthMenu: [5, 10, 25, 50, 75, 100],
         // dom: '<"flex justify-between items-center mb-4"lf>t<"flex justify-between items-center mt-4"ip>',
@@ -125,7 +158,7 @@
                 previous: " Previous "
             },
             // dom: '<"flex justify-between items-center mb-4"lf>t<"flex justify-between items-center mt-4"ip>'
-            zeroRecords: "Data tidak ditemukan"
+            zeroRecords: "No data found"
         }
     });
 });

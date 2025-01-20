@@ -8,6 +8,11 @@ Route::get('/', function () {
 });
 
 
+Route::get('/dashboard/courses/add', function () {
+    return view('courses.partial.add');
+})->name('courses.add')->middleware(['auth', 'verified']);
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
