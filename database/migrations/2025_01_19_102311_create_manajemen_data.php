@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('Nama_kursus');
             $table->string('Deskripsi');
-            $table->string('Harga');
+            $table->integer('Harga');
             $table->enum('Status', ['Aktif', 'Tidak Aktif']);
             $table->integer('jumlah_siswa_terdaftar')->nullable();
             $table->timestamps();
