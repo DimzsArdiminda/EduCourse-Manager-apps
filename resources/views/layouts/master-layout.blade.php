@@ -12,9 +12,9 @@
 
     @vite(['resources/css/app.css','resources/js/app.js'])
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-     --}}
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> --}}
+    
     <title>@yield('title', 'Educourse')</title>
 </head>
 <body class="font-sans antialiased">
