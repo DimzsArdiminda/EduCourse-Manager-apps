@@ -1,3 +1,23 @@
+function confirmLogout(event) {
+    event.preventDefault(); // Prevents the form from submitting immediately
+
+    // SweetAlert confirmation
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You will be logged out of your account!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, Logout',
+        cancelButtonText: 'Cancel',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // If confirmed, submit the form
+            document.getElementById('logout-form').submit();
+        }
+    });
+}
+
 var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
 var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 
