@@ -29,7 +29,7 @@
 
     {{-- Tabel untuk menampilkan data --}}
     <div class="mt-15 ">
-      <a href="{{ route('courses.add') }}">
+      <a href="{{ route('users.add') }}">
           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-4">
               Add Course
           </button>
@@ -82,7 +82,7 @@
                               <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 3.487a2.25 2.25 0 0 1 3.182 3.182L7.5 19.213 3 21l1.787-4.5L16.862 3.487z" />
                             </svg>
                             </a>
-                            <form action="{{ route('courses.delete', $course->id) }}" method="POST" class="inline" id="delete-form-{{ $course->id }}">
+                            <form action="{{ route('siswa.delete', $course->id) }}" method="POST" class="inline" id="delete-form-{{ $course->id }}">
                             @csrf
                             @method('DELETE')
                             <button type="button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center"

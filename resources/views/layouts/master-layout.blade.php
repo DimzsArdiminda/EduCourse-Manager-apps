@@ -11,7 +11,7 @@
      <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
      <link href="https://cdn.datatables.net/v/dt/dt-2.2.1/datatables.min.css" rel="stylesheet">
      <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
+     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     @vite(['resources/css/app.css','resources/js/app.js'])
 
     <style>
@@ -143,11 +143,46 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 {{-- <script src="https://cdn.datatables.net/v/dt/dt-2.2.1/r-3.0.3/rr-1.5.0/sc-2.4.3/sb-1.8.1/sp-2.3.3/sl-3.0.0/datatables.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     
     <script src="{{ asset('/app.js') }}"></script>
 
+ 
+    
    <script>
+     $(document).ready(function () {
+        $('#selectCourse').select2({
+            placeholder: 'Input course name',
+            ajax: {
+                url: '{{ route("select.courses") }}', // URL API untuk mengambil data
+                dataType: 'json',
+                delay: 250, // Delay pencarian
+                data: function (params) {
+                    return {
+                        q: params.term // Kirimkan teks pencarian ke backend
+                    };
+                },
+                processResults: function (data) {
+                    // Map hasil pencarian ke format Select2
+                    var formattedData = data.results.map(function (item) {
+                        return {
+                            id: item.id,
+                            text: item.Nama_kursus
+                        };
+                    });
+
+                    return {
+                        results: formattedData
+                    };
+                },
+                cache: true
+            },
+            minimumInputLength: 3 // Minimal 3 karakter untuk pencarian
+        });
+    });
+
+
+
      function confirmDelete(courseId) {
     Swal.fire({
       title: 'Delete data ?',
