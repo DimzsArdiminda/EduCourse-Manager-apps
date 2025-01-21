@@ -31,7 +31,7 @@ class mvpController extends Controller
         // dd($req->all());
         // form validation
         $req->validate([
-            'name' => 'required',
+            'name' => 'required|unique:manajemen_data,nama_kursus',
             'description' => 'required',
             'price' => 'required'
         ]);

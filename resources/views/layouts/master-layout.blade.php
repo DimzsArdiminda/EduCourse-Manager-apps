@@ -10,6 +10,7 @@
      <link rel="preconnect" href="https://fonts.bunny.net">
      <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
      <link href="https://cdn.datatables.net/v/dt/dt-2.2.1/datatables.min.css" rel="stylesheet">
+     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     @vite(['resources/css/app.css','resources/js/app.js'])
 
@@ -122,10 +123,9 @@
     {{-- jquery --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-     
 {{-- <script src="https://cdn.datatables.net/v/dt/dt-2.2.1/r-3.0.3/rr-1.5.0/sc-2.4.3/sb-1.8.1/sp-2.3.3/sl-3.0.0/datatables.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    
     
     <script src="{{ asset('/app.js') }}"></script>
 

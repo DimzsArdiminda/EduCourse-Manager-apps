@@ -13,8 +13,8 @@ class HomeController extends Controller
         // data management
         $getDataManajamend = ManajemenDataKursus::all()->count();
         // Hitung jumlah aktif dan tidak aktif
-        $activeCount = ManajemenDataKursus::where('status', 'aktif')->count();
-        $inactiveCount = ManajemenDataKursus::where('status', 'tidak aktif')->count();
+        $activeCount = ManajemenDataKursus::where('status', 'Aktif')->count();
+        $inactiveCount = ManajemenDataKursus::where('status', 'Tidak Aktif')->count();
 
         // siswa
         // $getSiswa = Siswa::all();
