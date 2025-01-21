@@ -52,18 +52,23 @@ class mvpController extends Controller
         $courses->delete();
         return redirect()->route('courses');
     }
+
+    // done
     // show by id
     public function getDataByIDSiswa($id){
-        $courses = ManajemenDataKursus::find($id);
-        // dd($courses);
-        return view('courses.partial.byid', compact('courses'));
+        $courses = Siswa::find($id);
+        return view('users.partial.byid', compact('courses',));
     }
 
+    // done
     public function getDataByIDForUPdateSiswa($id){
-        $courses = ManajemenDataKursus::find($id);
+        $courses = Siswa::find($id);
+        $getIDKursus = ManajemenDataKursus::find($courses->id_kursus);
         // dd($courses);
-        return view('courses.partial.edit', compact('courses'));
+        return view('users.partial.edit', compact('courses', 'getIDKursus'));
     }
+
+    // done
     // manage data courses siswa
     public function indexSiswa(){
 
@@ -72,6 +77,9 @@ class mvpController extends Controller
 
         return view('users.courses', compact('courses'));
     }
+
+
+
     public function UpdateDataCourse(Request $req){
         // dd($req->all());
         // form validation

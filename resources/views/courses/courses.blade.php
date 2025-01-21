@@ -1,7 +1,7 @@
 @extends('layouts.master-layout')
 
 @section('content')
-    <div class="p-6 text-gray-900" style="overflow-x: auto;">
+    <div class="p-6 text-gray-900 dark:text-gray-100" style="overflow-x: auto;">
         <b>
             <h1 class="text-3xl">Courses Data</h1>
         </b>
@@ -34,7 +34,7 @@
               Add Course
           </button>
       </a>
-        <table id="courses-table" class="table-auto border-collapse dataTable" >
+        <table id="courses-table" class="table-auto border-collapse dataTable text-gray-900 dark:text-gray-100" >
             <thead>
                 <tr>
                     <th>No <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">

@@ -1,31 +1,35 @@
 @extends('layouts.master-layout')
 
 @section('content')
-    <div class="p-6 text-gray-900">
+    <div class="p-6 text-gray-900 dark:text-gray-100">
         <b>
-            <h1 class="text-3xl">{{ $courses->Nama_kursus }}</h1>
+            <h1 class="text-3xl">{{ $courses->Nama }}</h1>
         </b>
         <p class="mt-4">
-            <b>Description</b> : {{ $courses->Deskripsi }}
+            <b>Email</b> : {{ $courses->email }}
             <br>
-            <b>Price:</b> Rp {{ number_format($courses->Harga, 0, ',', '.') }}
-
         </p>
 
         {{-- layout --}}
-        <div class="grid grid-cols-1 gap-4 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
-            <div class="p-4 bg-white shadow-md rounded-lg">
-                <h5 class="text-lg font-semibold">Status</h5>
-                <p>{{ $courses->Status }}</p>
+        <div class="grid grid-cols-1 gap-4 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 ">
+            <a href="{{ route('courses.id', $courses->id_kursus) }}" class="transition-transform transform hover:scale-105">
+                <div class="p-4 dark:bg-gray-700 shadow-md rounded-lg text-gray-900 dark:text-gray-100">
+                    <h5 class="text-lg font-semibold">Course Name</h5>
+                    <p>{{ $courses->nama_kursus }}</p>
+                </div>
+            </a>
+            <div class="p-4 dark:bg-gray-700 dark:text-gray-200 shadow-md rounded-lg">
+                <h2 class="text-lg font-semibold">Date Of Registation</h2>
+                <p>{{ $courses->tanggal_daftar }}</p>
             </div>
-            <div class="p-4 bg-white shadow-md rounded-lg">
-                <h2 class="text-lg font-semibold">Number of Students</h2>
-                <p>{{ $courses->jumlah_siswa_terdaftar ?? 0 }}</p>
-            </div>
-            <div class="p-4 bg-white shadow-md rounded-lg">
-                <h2 class="text-lg font-semibold">Created At</h2>
+            <div class="p-4 dark:bg-gray-700 dark:text-gray-200 shadow-md rounded-lg">
+                <h2 class="text-lg font-semibold">Payment Status</h2>
                 <p class="text-sm text-gray-600">
-                    {{ \Carbon\Carbon::parse($courses->created_at)->format('d-m-Y H:i') }}
+                    @if ($courses->Status_Pembayaran == 'Lunas')
+                        <span class="bg-green-200 text-green-800 rounded-full px-3 py-1">Lunas</span>
+                    @else
+                        <span class="bg-red-200 text-red-800 rounded-full px-3 py-1">Belum Lunas</span>
+                    @endif
                 </p>
             </div>
         </div>

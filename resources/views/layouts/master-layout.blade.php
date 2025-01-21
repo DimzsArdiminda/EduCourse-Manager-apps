@@ -75,16 +75,34 @@
         transition: border-color 0.3s ease;
         width: 100%;
         max-width: 200px;
+        background-color: white;
+        color: black;
     }
+
+    @media (color-theme: dark) {
+        .dataTables_wrapper .dataTables_filter input {
+            background-color: #1f2937;
+            color: #d1d5db;
+        }
+    }
+    
 
      /* Styling untuk Dropdown (Length Menu) */
      .dataTables_wrapper .dataTables_length select {
         padding-left: 0.2rem;
-        border: 5px solid #d1d5db;
+        border: 1px solid #d1d5db;
         border-radius: 0.375rem;
         outline: none;
         transition: border-color 0.3s ease;
         background-color: white;
+        color: black;
+    }
+
+    @media (color-theme: dark) {
+        .dataTables_wrapper .dataTables_length select {
+            background-color: #1f2937;
+            color: #d1d5db;
+        }
     }
 
 
@@ -104,7 +122,7 @@
 
     /* Menambahkan hover efek untuk header */
     #courses-table th:hover {
-        background-color: #f3f4f6;
+        /* hover animation up */
         cursor: pointer;
     }
     </style>
