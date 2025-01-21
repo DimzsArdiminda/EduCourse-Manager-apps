@@ -22,6 +22,7 @@ class mvpController extends Controller
         $courses->nama_kursus = $req->name;
         $courses->deskripsi = $req->description;
         $courses->harga = $req->price;
+        $courses->status = $req->status;
         $courses->updated_at = now();
         $courses->save();
         return redirect()->route('courses')->with('success', 'data updated successfully');
