@@ -18,3 +18,5 @@ Route::delete('/dashboard/courses/{id}', [mvpController::class, 'deleteDataCours
 Route::post('/dashboard/courses/add-bro', [mvpController::class, 'addDataCourse'])->middleware(['auth', 'verified'])->name('courses.add.bro');
 Route::post('/dashboard/courses/update-bro', [mvpController::class, 'UpdateDataCourse'])->middleware(['auth', 'verified'])->name('courses.update.bro');
 
+// Siswa
+Route::get('/dashboard/siswa', [mvpController::class, 'indexSiswa'])->middleware(['auth', 'verified'])->name('siswa');
