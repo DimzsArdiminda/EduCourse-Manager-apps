@@ -24,4 +24,6 @@ Route::get('/dashboard/siswa/{id}', [mvpController::class, 'getDataByIDSiswa'])-
 Route::get('/dashboard/siswa/{id}/edit', [mvpController::class, 'getDataByIDForUPdateSiswa'])->middleware(['auth', 'verified'])->name('siswa.id.edit');
 Route::delete('/dashboard/siswa/{id}', [mvpController::class, 'deleteDataCoursesSiswa'])->middleware(['auth', 'verified'])->name('siswa.delete');
 Route::post('/dashboard/siswa/add-bro', [mvpController::class, 'addDataCourseSiswa'])->middleware(['auth', 'verified'])->name('siswa.add.bro');
+Route::post('/dashboard/siswa/update-bro', [mvpController::class, 'UpdateDataSiswa'])->middleware(['auth', 'verified'])->name('siswa.update.bro');
 Route::get('/api/courses/search', [mvpController::class, 'searchCourses'])->name('select.courses');
+

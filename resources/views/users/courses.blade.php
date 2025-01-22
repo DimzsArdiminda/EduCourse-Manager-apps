@@ -67,7 +67,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $course->Nama }}</td>
                         <td>{{ $course->email }}</td>
-                        <td>{{ $course->nama_kursus }}</td>
+                        <td>{{ $course->nama_kursus ?? '-' }}</td>
                         <td>{{ \Carbon\Carbon::parse($course->tanggal_daftar)->format('d-m-Y H:i') }}</td>
                         <td>{{ $course->Status_Pembayaran }}</td>
                         <td class="flex flex-col sm:flex-row gap-2 justify-center">

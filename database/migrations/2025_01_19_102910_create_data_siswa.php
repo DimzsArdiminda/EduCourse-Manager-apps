@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('Nama');
             $table->string('email');
-            $table->foreignId('id_kursus')->constrained('manajemen_data')->onDelete('cascade');
-            $table->string('nama_kursus');
+            $table->foreignId('id_kursus')->nullable()->constrained('manajemen_data')->onDelete('cascade');
+            $table->string('nama_kursus')->nullable();
             $table->date('tanggal_daftar');
             $table->enum('Status_Pembayaran', ['Lunas', 'Belum Lunas']);
             $table->timestamps();

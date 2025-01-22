@@ -18,7 +18,7 @@ class dataManagement extends Seeder
                 'Deskripsi' => 'Belajar Laravel dari dasar hingga mahir',
                 'Harga' => 50000,
                 'Status' => 'Aktif',
-                'jumlah_siswa_terdaftar' => NULL,
+                'jumlah_siswa_terdaftar' => 10,
             ],
             [
                 'Nama_kursus' => 'Belajar PHP',

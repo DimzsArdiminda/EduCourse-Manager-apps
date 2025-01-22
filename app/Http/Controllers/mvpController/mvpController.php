@@ -14,6 +14,7 @@ class mvpController extends Controller
     
         // Filter data berdasarkan kolom Nama_kursus
         $courses = ManajemenDataKursus::where('Nama_kursus', 'LIKE', "%{$search}%")
+            ->where('status', 'Aktif')
             ->select('id', 'Nama_kursus') // Ambil hanya kolom yang dibutuhkan
             ->get();
     
@@ -24,30 +25,56 @@ class mvpController extends Controller
     
     
     public function UpdateDataSiswa(Request $req){
-        // dd($req->all());
         // form validation
         $req->validate([
             'name' => 'required',
-            'description' => 'required',
-            'price' => 'required'
+            'email' => 'required|email',
+            'course' => 'required',
+            'status' => 'required',
         ]);
+        // dd($req->all());
 
-        $courses = ManajemenDataKursus::find($req->id);
-        $courses->nama_kursus = $req->name;
-        $courses->deskripsi = $req->description;
-        $courses->harga = $req->price;
-        $courses->status = $req->status;
+        $getDataCourse = ManajemenDataKursus::where('id', $req->course)->first();
+        
+
+        $courses = Siswa::find($req->id);
+        $courses->Nama = $req->name;
+        $courses->email = $req->email;
+        $courses->id_kursus = $req->course;
+        $courses->nama_kursus = $getDataCourse->Nama_kursus;
+        $courses->Status_Pembayaran = $req->status;
+        $courses->tanggal_daftar = $req->Tanggal_daftar;
         $courses->updated_at = now();
+
+
+        $dataLamaDariSiswa = Siswa::find($req->id);
+        $dataDariManajemen = ManajemenDataKursus::find($req->course);
+        $getOldData = ManajemenDataKursus::find($dataLamaDariSiswa->id_kursus);
+
+
+        if ($dataLamaDariSiswa->id_kursus != $dataDariManajemen->id) {
+            if ($dataDariManajemen->jumlah_siswa_terdaftar == null || $dataDariManajemen->jumlah_siswa_terdaftar == 0) {
+                $dataDariManajemen->jumlah_siswa_terdaftar = 1;
+                $getOldData->jumlah_siswa_terdaftar -= 1;
+            } else {
+                $dataDariManajemen->jumlah_siswa_terdaftar += 1;
+                $getOldData->jumlah_siswa_terdaftar -= 1;
+            }
+        }
+        
+        
+        // save data
+        $dataDariManajemen->save();
+        $getOldData->save();
         $courses->save();
-        return redirect()->route('siswa')->with('success', 'data updated successfully');
+        return redirect()->route('siswa')->with('success', 'Data Updated Successfully');
     }
 
     public function addDataCourseSiswa(Request $req){
         // form validation
         $req->validate([
             'name' => 'required',
-            'description' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:data_siswa,email',
             'course' => 'required',
             'status' => 'required',
             
@@ -66,22 +93,24 @@ class mvpController extends Controller
         $courses->updated_at = now();
 
         $updateDataCourse = ManajemenDataKursus::find($req->course);
-        if ($updateDataCourse->jumlah_siswa_terdaftar == null) {
+        if ($updateDataCourse->jumlah_siswa_terdaftar == null || $updateDataCourse->jumlah_siswa_terdaftar == 0) {
             $updateDataCourse->jumlah_siswa_terdaftar = 1;
         } else {
             $updateDataCourse->jumlah_siswa_terdaftar += 1;
         }
         $courses->save();
         $updateDataCourse->save();
-        return redirect()->route('siswa')->with('success', 'data added successfully');
+        return redirect()->route('siswa')->with('success', 'Data Added Successfully');
     }
 
     // done
     public function deleteDataCoursesSiswa($id){
         $courses = Siswa::find($id);
-        // dd($courses);
+        $getDataCourse = ManajemenDataKursus::find($courses->id_kursus);
+        $getDataCourse->jumlah_siswa_terdaftar -= 1;
+        $getDataCourse->save();
         $courses->delete();
-        return redirect()->route('siswa')->with('success', 'data deleted successfully');
+        return redirect()->route('siswa')->with('success', 'Data Deleted Successfully');
     }
 
     // done
@@ -95,8 +124,9 @@ class mvpController extends Controller
     public function getDataByIDForUPdateSiswa($id){
         $courses = Siswa::find($id);
         $getIDKursus = ManajemenDataKursus::find($courses->id_kursus);
-        // dd($courses);
-        return view('users.partial.edit', compact('courses', 'getIDKursus'));
+        $availableCourses = ManajemenDataKursus::all(); // Data untuk dropdown
+        // dd($availableCourses);
+        return view('users.partial.edit', compact('courses', 'getIDKursus', 'availableCourses'));
     }
 
     // done
@@ -125,7 +155,7 @@ class mvpController extends Controller
         $courses->status = $req->status;
         $courses->updated_at = now();
         $courses->save();
-        return redirect()->route('courses')->with('success', 'data updated successfully');
+        return redirect()->route('courses')->with('success', 'Data Updated Successfully');
     }
 
     public function addDataCourse(Request $req){
@@ -145,12 +175,12 @@ class mvpController extends Controller
         $courses->updated_at = now();
         $courses->jumlah_siswa_terdaftar = null;
         $courses->save();
-        return redirect()->route('courses')->with('success', 'data added successfully');
+        return redirect()->route('courses')->with('success', 'Data Added Successfully');
     }
     public function deleteDataCourses($id){
         $courses = ManajemenDataKursus::find($id);
         $courses->delete();
-        return redirect()->route('courses')->with('success', 'data deleted successfully');
+        return redirect()->route('courses')->with('success', 'Data Deleted Successfully');
     }
     // show by id
     public function getDataByID($id){

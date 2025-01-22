@@ -15,81 +15,83 @@ class siswacihuy extends Seeder
     {
         Siswa::create([
             'Nama' => 'Rizky',
-            'email' => 'example.com',
-            'id_kursus' => 3,
-            'nama_kursus' => 'Belajar php',
+            'id_kursus' => 1,
+            "nama_kursus" => "Belajar Laravel",
+            'email' => 'example@gmail.com',
             'tanggal_daftar' => '2025-03-02',
             'Status_Pembayaran' => 'Lunas',
         ]);
         Siswa::create([
             'Nama' => 'Rizky',
-            'email' => 'example3.com',
-            'id_kursus' => 3,
-            'nama_kursus' => 'Belajar php',
+            'id_kursus' => 1,
+            "nama_kursus" => "Belajar Laravel",
+            'email' => 'example3@gmail.com',
             'tanggal_daftar' => '2025-03-02',
             'Status_Pembayaran' => 'Lunas',
         ]);
         Siswa::create([
             'Nama' => 'Rizky',
-            'email' => 'example2.com',
-            'id_kursus' => 3,
-            'nama_kursus' => 'Belajar php',
+            'id_kursus' => 1,
+            "nama_kursus" => "Belajar Laravel",
+            'id_kursus' => 1,
+            "nama_kursus" => "Belajar Laravel",
+            'email' => 'example2@gmail.com',
             'tanggal_daftar' => '2025-03-02',
             'Status_Pembayaran' => 'Lunas',
         ]);
         Siswa::create([
             'Nama' => 'Rizky',
-            'email' => 'example3.com',
-            'id_kursus' => 3,
-            'nama_kursus' => 'Belajar php',
+            'id_kursus' => 1,
+            "nama_kursus" => "Belajar Laravel",
+            'email' => 'example3@gmail.com',
             'tanggal_daftar' => '2025-03-02',
             'Status_Pembayaran' => 'Lunas',
         ]);
         Siswa::create([
             'Nama' => 'Rizky',
-            'email' => 'example4.com',
-            'id_kursus' => 3,
-            'nama_kursus' => 'Belajar php',
+            'id_kursus' => 1,
+            "nama_kursus" => "Belajar Laravel",
+            'email' => 'example4@gmail.com',
             'tanggal_daftar' => '2025-03-02',
             'Status_Pembayaran' => 'Lunas',
         ]);
         Siswa::create([
             'Nama' => 'Rizky',
-            'email' => 'example5.com',
-            'id_kursus' => 3,
-            'nama_kursus' => 'Belajar php',
+            'id_kursus' => 1,
+            "nama_kursus" => "Belajar Laravel",
+            'email' => 'example5@gmail.com',
             'tanggal_daftar' => '2025-03-02',
             'Status_Pembayaran' => 'Lunas',
         ]);
         Siswa::create([
             'Nama' => 'Rizky',
-            'email' => 'example6.com',
-            'id_kursus' => 3,
-            'nama_kursus' => 'Belajar php',
+            'id_kursus' => 1,
+            "nama_kursus" => "Belajar Laravel",
+            'email' => 'example6@gmail.com',
             'tanggal_daftar' => '2025-03-02',
             'Status_Pembayaran' => 'Lunas',
         ]);
         Siswa::create([
             'Nama' => 'Rizky',
-            'email' => 'example7.com',
-            'id_kursus' => 3,
-            'nama_kursus' => 'Belajar php',
+            'id_kursus' => 1,
+            "nama_kursus" => "Belajar Laravel",
+            'email' => 'example7@gmail.com',
             'tanggal_daftar' => '2025-03-02',
             'Status_Pembayaran' => 'Lunas',
         ]);
         Siswa::create([
             'Nama' => 'Rizky',
-            'email' => 'example8.com',
-            'id_kursus' => 3,
-            'nama_kursus' => 'Belajar php',
+            'id_kursus' => 1,
+            "nama_kursus" => "Belajar Laravel",
+            'email' => 'example8@gmail.com',
             'tanggal_daftar' => '2025-03-02',
             'Status_Pembayaran' => 'Lunas',
         ]);
         Siswa::create([
             'Nama' => 'Rizky',
-            'email' => 'example9.com',
-            'id_kursus' => 3,
-            'nama_kursus' => 'Belajar php',
+            'id_kursus' => 1,
+            "nama_kursus" => "Belajar Laravel",
+            'email' => 'example9@gmail.com',
             'tanggal_daftar' => '2025-03-02',
             'Status_Pembayaran' => 'Lunas',
         ]);
