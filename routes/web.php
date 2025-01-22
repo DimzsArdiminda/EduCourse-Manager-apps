@@ -26,3 +26,4 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 include 'fromController.php';
+include 'openAPI.php';

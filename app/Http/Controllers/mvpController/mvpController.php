@@ -100,7 +100,7 @@ class mvpController extends Controller
         }
         $courses->save();
         $updateDataCourse->save();
-        return redirect()->route('siswa')->with('success', 'Data Added Successfully');
+        return redirect()->route('siswa')->with('success', "{$courses->Nama} data is registered");
     }
 
     // done
@@ -170,6 +170,7 @@ class mvpController extends Controller
         $courses = new ManajemenDataKursus;
         $courses->nama_kursus = $req->name;
         $courses->deskripsi = $req->description;
+        $courses->Status = $req->status;
         $courses->harga = $req->price;
         $courses->created_at = now();
         $courses->updated_at = now();
