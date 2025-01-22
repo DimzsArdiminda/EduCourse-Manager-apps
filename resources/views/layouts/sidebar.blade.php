@@ -9,7 +9,11 @@
 <aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
    
    <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-      <h1 class="p-4 text-xl font-semibold text-gray-900 dark:text-white">Admin</h1>
+      <a href="{{ url('/dashboard') }}" class="flex items-center mb-5">
+         <!-- Uncomment the line below if you also wish to use an image logo -->
+         <img src="{{ asset('assets/img/logo.png') }}" alt="" class="h-8 w-8 mr-3">
+         <h1 class="text-xl font-semibold text-gray-900 dark:text-white">Educourse - Manage</h1>
+      </a>
       <ul class="space-y-2 font-medium">
          <li>
             <a href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" class="w-full flex  p-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 ">
