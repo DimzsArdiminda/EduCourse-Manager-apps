@@ -13,7 +13,7 @@ class CoursesExport implements FromCollection, withHeadings
     */
     public function collection()
     {
-        return ManajemenDataKursus::all();
+        return ManajemenDataKursus::select('Nama_kursus', 'Deskripsi', 'Harga', 'Status', 'jumlah_siswa_terdaftar', 'created_at', 'updated_at')->get();
     }
 
     public function headings(): array

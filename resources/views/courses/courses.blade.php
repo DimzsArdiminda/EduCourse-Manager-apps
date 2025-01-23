@@ -7,25 +7,35 @@
         </b>
 
           
-        @if (session('success'))
+        @if(session('success'))
         <div class="mt-15 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
             {{ session('success') }}
             <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-          <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" onclick="this.parentElement.parentElement.style.display='none';">
-              <path d="M14.348 14.849a1 1 0 0 1-1.414 0L10 11.414l-2.934 2.935a1 1 0 1 1-1.414-1.414L8.586 10 5.651 7.065a1 1 0 1 1 1.414-1.414L10 8.586l2.934-2.935a1 1 0 1 1 1.414 1.414L11.414 10l2.934 2.935a1 1 0 0 1 0 1.414z"/>
-          </svg>
+                <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" onclick="this.closest('.relative').style.display='none';">
+                    <path d="M14.348 14.849a1 1 0 0 1-1.414 0L10 11.414l-2.934 2.935a1 1 0 1 1-1.414-1.414L8.586 10 5.651 7.065a1 1 0 1 1 1.414-1.414L10 8.586l2.934-2.935a1 1 0 1 1 1.414 1.414L11.414 10l2.934 2.935a1 1 0 0 1 0 1.414z"/>
+                </svg>
             </span>
         </div>
-        @elseif(session('error'))
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-          {{ session('error') }}
-          <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-              <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" onclick="this.parentElement.parentElement.style.display='none';">
-            <path d="M14.348 14.849a1 1 0 0 1-1.414 0L10 11.414l-2.934 2.935a1 1 0 1 1-1.414-1.414L8.586 10 5.651 7.065a1 1 0 1 1 1.414-1.414L10 8.586l2.934-2.935a1 1 0 1 1 1.414 1.414L11.414 10l2.934 2.935a1 1 0 0 1 0 1.414z"/>
-              </svg>
-          </span>
-            </div>
-        @endif
+    @elseif(session('error'))
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            @if(is_array(session('error')))
+                <ul>
+                    @foreach(session('error') as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @else
+                {{ session('error') }}
+            @endif
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" onclick="this.closest('.relative').style.display='none';">
+                    <path d="M14.348 14.849a1 1 0 0 1-1.414 0L10 11.414l-2.934 2.935a1 1 0 1 1-1.414-1.414L8.586 10 5.651 7.065a1 1 0 1 1 1.414-1.414L10 8.586l2.934-2.935a1 1 0 1 1 1.414 1.414L11.414 10l2.934 2.935a1 1 0 0 1 0 1.414z"/>
+                </svg>
+            </span>
+        </div>
+    @endif
+    
+
 
     {{-- Tabel untuk menampilkan data --}}
     <div class="mt-15 ">
@@ -39,14 +49,37 @@
           Export to Excel
           </button>
       </a>
-      <a href="#">
-      {{-- <a href="{{ route('courses.import.excel') }}"> --}}
-          <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded my-4">
-          Import from Excel
-          </button>
-      </a>
-      <a href="#">
-      {{-- <a href="{{ route('courses.export.pdf') }}"> --}}
+  {{-- Tombol untuk membuka modal --}}
+    <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded my-4" id="openModal">
+      Import from Excel
+    </button>
+
+    {{-- Modal --}}
+    <div id="importModal" class="fixed inset-0 flex items-center justify-center  bg-black bg-opacity-50 hidden transition-opacity duration-300 ease-in-out">
+      <div class="dark:bg-gray-700 dark:text-gray-200 bg-white rounded-lg shadow-lg p-6 w-1/3 transform transition-transform duration-300 ease-in-out scale-95 ">
+        <h2 class="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">Import Excel File</h2>
+        <form action="{{ route('courses.import.excel') }}" method="POST" enctype="multipart/form-data">
+          @csrf
+          <label for="file">Available for .xlsx, .xls, .csv </label>
+          <input type="file" name="file" accept=".xlsx, .xls, .csv" required class="mb-4">
+          {{-- @error('file')
+            <div class="text-red-500 mt-2 text-sm">
+              {{ $message }}
+            </div>
+          @enderror --}}
+          <div class="flex justify-end space-x-2">
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Import
+            </button>
+            <button type="button" id="closeModal" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+      <a href="{{ route('export.courses.export') }}">
           <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded my-4">
           Export to PDF
           </button>
@@ -116,5 +149,23 @@
         </div>
     </div>
 
-    
+    <script>
+      document.getElementById('openModal').addEventListener('click', function() {
+        const modal = document.getElementById('importModal');
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+          modal.classList.remove('opacity-0');
+          modal.firstElementChild.classList.remove('scale-95');
+        }, 10);
+      });
+
+      document.getElementById('closeModal').addEventListener('click', function() {
+        const modal = document.getElementById('importModal');
+        modal.classList.add('opacity-0');
+        modal.firstElementChild.classList.add('scale-95');
+        setTimeout(() => {
+          modal.classList.add('hidden');
+        }, 300);
+      });
+    </script>
 @endsection

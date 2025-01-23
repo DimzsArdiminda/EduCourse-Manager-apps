@@ -8,9 +8,45 @@ use App\Models\ManajemenDataKursus;
 use App\Models\Siswa;
 use App\Exports\CoursesExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Mpdf\Mpdf;
+use App\Imports\CoursesImport;
 
 class mvpController extends Controller
 {
+    public function getPDF(){
+        $courses = ManajemenDataKursus::all();
+        // dd($courses);
+        $pdf = PDF::loadView('courses.partial.export', compact('courses'));
+        return $pdf->download('courses.pdf');
+    }
+    public function importDataCourses(Request $req){
+        $req->validate([
+            'file' => 'required|mimes:xlsx,xls,csv|max:2048',
+        ]);
+    
+        try {
+            // Reset session failedRows sebelum impor
+            session()->forget('failedRows');
+    
+            // Proses impor
+            Excel::import(new CoursesImport, $req->file('file'));
+    
+            // Cek jika ada baris gagal
+            if (session()->has('failedRows')) {
+                $failedRows = session()->get('failedRows');
+                return redirect()->route('courses')
+                    ->with('error', 'Some rows failed to import: ' . implode(', ', $failedRows));
+            }
+    
+            // Pesan berhasil
+            return redirect()->route('courses')->with('success', 'Import successfully!');
+        } catch (\Exception $e) {
+            // Pesan gagal
+            return redirect()->route('courses')->with('error', 'An error occurred during import: ' . $e->getMessage());
+        }
+    }
+    
     public function exportDataCourses(){
         $fileName = 'courses_' . date('YmdHis') . '.xlsx';
         return Excel::download(new CoursesExport, $fileName);

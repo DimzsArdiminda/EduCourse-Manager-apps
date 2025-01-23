@@ -25,7 +25,10 @@ Route::get('/dashboard/siswa/{id}/edit', [mvpController::class, 'getDataByIDForU
 Route::delete('/dashboard/siswa/{id}', [mvpController::class, 'deleteDataCoursesSiswa'])->middleware(['auth', 'verified'])->name('siswa.delete');
 Route::post('/dashboard/siswa/add-bro', [mvpController::class, 'addDataCourseSiswa'])->middleware(['auth', 'verified'])->name('siswa.add.bro');
 Route::post('/dashboard/siswa/update-bro', [mvpController::class, 'UpdateDataSiswa'])->middleware(['auth', 'verified'])->name('siswa.update.bro');
-Route::get('/api/courses/search', [mvpController::class, 'searchCourses'])->name('select.courses');
+Route::get('/api/courses/search', [mvpController::class, 'searchCourses'])->name('select.courses')->middleware(['auth', 'verified']);
 
 // export data
 Route::get('/dashboard/export/courses', [mvpController::class, 'exportDataCourses'])->middleware(['auth', 'verified'])->name('export.courses');
+// import data
+Route::post('/dashboard/import/courses', [mvpController::class, 'importDataCourses'])->middleware(['auth', 'verified'])->name('courses.import.excel');
+Route::get('/dashboard/export/courses/export', [mvpController::class, 'getPDF'])->middleware(['auth', 'verified'])->name('export.courses.export');
