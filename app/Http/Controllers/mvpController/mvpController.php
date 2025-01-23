@@ -6,9 +6,15 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\ManajemenDataKursus;
 use App\Models\Siswa;
+use App\Exports\CoursesExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class mvpController extends Controller
 {
+    public function exportDataCourses(){
+        $fileName = 'courses_' . date('YmdHis') . '.xlsx';
+        return Excel::download(new CoursesExport, $fileName);
+    }
     public function searchCourses(Request $request) {
         $search = $request->get('q'); // Ambil parameter pencarian dari Select2
     

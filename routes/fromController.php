@@ -27,3 +27,5 @@ Route::post('/dashboard/siswa/add-bro', [mvpController::class, 'addDataCourseSis
 Route::post('/dashboard/siswa/update-bro', [mvpController::class, 'UpdateDataSiswa'])->middleware(['auth', 'verified'])->name('siswa.update.bro');
 Route::get('/api/courses/search', [mvpController::class, 'searchCourses'])->name('select.courses');
 
+// export data
+Route::get('/dashboard/export/courses', [mvpController::class, 'exportDataCourses'])->middleware(['auth', 'verified'])->name('export.courses');

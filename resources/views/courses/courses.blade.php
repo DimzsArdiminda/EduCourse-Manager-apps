@@ -30,8 +30,25 @@
     {{-- Tabel untuk menampilkan data --}}
     <div class="mt-15 ">
       <a href="{{ route('courses.add') }}">
-          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-4">
-              Add Course
+          <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded my-4">
+          Add Course
+          </button>
+      </a>
+      <a href="{{ route('export.courses') }}">
+          <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded my-4">
+          Export to Excel
+          </button>
+      </a>
+      <a href="#">
+      {{-- <a href="{{ route('courses.import.excel') }}"> --}}
+          <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded my-4">
+          Import from Excel
+          </button>
+      </a>
+      <a href="#">
+      {{-- <a href="{{ route('courses.export.pdf') }}"> --}}
+          <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded my-4">
+          Export to PDF
           </button>
       </a>
         <table id="courses-table" class="table-auto border-collapse dataTable text-gray-900 dark:text-gray-100" >
