@@ -52,12 +52,12 @@ class mvpController extends Controller
         return Excel::download(new CoursesExport, $fileName);
     }
     public function searchCourses(Request $request) {
-        $search = $request->get('q'); // Ambil parameter pencarian dari Select2
+        $search = $request->get('q'); 
     
-        // Filter data berdasarkan kolom Nama_kursus
+        
         $courses = ManajemenDataKursus::where('Nama_kursus', 'LIKE', "%{$search}%")
             ->where('status', 'Aktif')
-            ->select('id', 'Nama_kursus') // Ambil hanya kolom yang dibutuhkan
+            ->select('id', 'Nama_kursus')
             ->get();
     
         return response()->json([

@@ -1,4 +1,69 @@
-GET http://127.0.0.1:8000/api/siswa
+### 1. GET - List all Siswa
+GET http://127.0.0.1:8000/api/siswa 
+Content-Type: application/json
 
-###
-GET http://127.0.0.1:8000/api/courses
+### 2. GET - Get Siswa by ID
+GET http://127.0.0.1:8000/api/siswa/1
+Content-Type: application/json
+
+### 3. POST - Add Siswa
+POST http://127.0.0.1:8000/api/siswa 
+Content-Type: application/json
+
+{
+    "name": "Jane Doe",
+    "email": "janedoe@example.com",
+    "course": 2,
+    "status": "Lunas",
+    "Tanggal_daftar": "2025-01-23"
+}
+
+### 4. PUT - Update Siswa
+PUT http://127.0.0.1:8000/api/siswa/1 
+Content-Type: application/json
+
+{
+    "name": "Jane Doeeee",
+    "email": "janedoe@example.com",
+    "course": 2,
+    "status": "Belum Lunas",
+    "Tanggal_daftar": "2025-01-23"
+}
+
+### 5. DELETE - Delete Siswa
+DELETE http://127.0.0.1:8000/api/siswa/12
+Content-Type: application/json
+
+### 6. GET - List all Courses
+GET http://127.0.0.1:8000/api/courses 
+Content-Type: application/json
+
+### 7. GET - Get Course by ID
+GET http://127.0.0.1:8000/api/courses/1 
+Content-Type: application/json
+
+### 8. POST - Add Course
+POST http://127.0.0.1:8000/api/courses 
+Content-Type: application/json
+
+{
+    "Nama_kursus": "Programming 101",
+    "deskripsi": "Learn the basics of programming",
+    "status": "Aktif",
+    "jumlah_siswa_terdaftar": 0
+}
+
+### 9. PUT - Update Course
+PUT http://127.0.0.1:8000/api/courses/1 
+Content-Type: application/json
+
+{
+    "Nama_kursus": "Programming 102",
+    "deskripsi": "Advanced programming concepts",
+    "status": "Aktif",
+    "jumlah_siswa_terdaftar": 5
+}
+
+### 10. DELETE - Delete Course
+DELETE http://127.0.0.1:8000/api/courses/1 
+Content-Type: application/json

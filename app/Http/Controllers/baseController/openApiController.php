@@ -11,7 +11,7 @@ class openApiController extends Controller
 {
     public function searchCourses(Request $request)
     {
-        $search = $request->get('q'); // Ambil parameter pencarian dari Select2
+        $search = $request->get('q');
 
         $courses = ManajemenDataKursus::where('Nama_kursus', 'LIKE', "%{$search}%")
             ->where('status', 'Aktif')
@@ -136,6 +136,4 @@ class openApiController extends Controller
         $courses = ManajemenDataKursus::orderBy('created_at', 'desc')->get();
         return response()->json(['status' => 'success', 'data' => $courses]);
     }
-
-    // Tambahkan metode lainnya dengan pola yang sama
 }
