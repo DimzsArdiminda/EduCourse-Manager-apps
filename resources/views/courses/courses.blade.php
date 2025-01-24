@@ -62,11 +62,11 @@
           @csrf
           <label for="file">Available for .xlsx, .xls, .csv </label>
           <input type="file" name="file" accept=".xlsx, .xls, .csv" required class="mb-4">
-          {{-- @error('file')
+          @error('file')
             <div class="text-red-500 mt-2 text-sm">
               {{ $message }}
             </div>
-          @enderror --}}
+          @enderror
           <div class="flex justify-end space-x-2">
             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
               Import
