@@ -31,11 +31,11 @@
         // Manajemen data siswa
         var Lunas = {{ $siswaLunasCount }};
         var inLunas = {{ $siswaBelumLunasCount }};
-    
+
         // Pastikan data sudah benar, jika null atau undefined, set default
         if (typeof Lunas === 'undefined') Lunas = 0;
         if (typeof inLunas === 'undefined') inLunas = 0;
-    
+
         var optionsSiswa = {
             chart: {
                 type: 'pie',
@@ -57,15 +57,15 @@
                 }
             }]
         };
-    
+
         // Inisialisasi chart untuk status pembayaran siswa
         var pembayaran = new ApexCharts(document.querySelector("#status-chart-siswa-pembayaran"), optionsSiswa);
         pembayaran.render();
-    
+
         // Manajemen data course
         var activeCount = {{ $activeCount }};
         var inactiveCount = {{ $inactiveCount }};
-    
+
         var optionsCourse = {
             chart: {
                 type: 'pie',
@@ -87,10 +87,9 @@
                 }
             }]
         };
-    
+
         // Inisialisasi chart untuk status data manajemen kursus
         var chart = new ApexCharts(document.querySelector("#status-chart"), optionsCourse);
         chart.render();
     </script>
-    
 @endsection
