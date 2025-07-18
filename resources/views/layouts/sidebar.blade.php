@@ -41,10 +41,10 @@
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 2.25c5.385 0 9.75 4.365 9.75 9.75S17.385 21.75 12 21.75 2.25 17.385 2.25 12 6.615 2.25 12 2.25Zm0 3a6.75 6.75 0 1 0 .001 13.5A6.75 6.75 0 0 0 12 5.25Z" />
+                                d="M4.5 6.75V18a2.25 2.25 0 002.25 2.25h10.5A2.25 2.25 0 0019.5 18V6.75M4.5 6.75A2.25 2.25 0 016.75 4.5h10.5A2.25 2.25 0 0119.5 6.75M4.5 6.75h15M8.25 10.5h7.5M8.25 14.25h4.5" />
                         </svg>
 
-                        <span class="flex-1 ms-3 whitespace-nowrap">Membuat Materi</span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Materi</span>
                     </a>
                 </li>
                 <li>
@@ -72,7 +72,7 @@
                     </a>
                 </li>
             @else
-                <li>
+                {{-- <li>
                     <a href="/"
                         class="w-full flex  p-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -83,7 +83,7 @@
 
                         <span class="flex-1 ms-3 whitespace-nowrap">Membaca Materi</span>
                     </a>
-                </li>
+                </li> --}}
                 <li>
                     <a href="/"
                         class="w-full flex  p-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
