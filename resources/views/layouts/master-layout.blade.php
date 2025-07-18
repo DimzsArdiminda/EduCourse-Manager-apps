@@ -151,7 +151,29 @@
     
    <script>
             // JavaScript untuk membuka dan menutup modal
-    
+    document.addEventListener('DOMContentLoaded', () => {
+        // Ambil semua tombol
+        const buttons = document.querySelectorAll('.btn-toggle-form');
+        const forms = document.querySelectorAll('.form-section');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Ambil target form dari atribut data-target
+                const target = button.getAttribute('data-target');
+
+                // Sembunyikan semua form
+                forms.forEach(form => {
+                    form.classList.add('hidden');
+                });
+
+                // Tampilkan form yang sesuai
+                const targetForm = document.getElementById(target);
+                if (targetForm) {
+                    targetForm.classList.remove('hidden');
+                }
+            });
+        });
+    });
 
      $(document).ready(function () {
         $('#selectCourse').select2({

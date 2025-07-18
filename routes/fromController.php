@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\baseController\HomeController;
 use App\Http\Controllers\mvpController\mvpController;
+use App\Http\Controllers\MateriController;
 
 
 
@@ -32,3 +33,9 @@ Route::get('/dashboard/export/courses', [mvpController::class, 'exportDataCourse
 // import data
 Route::post('/dashboard/import/courses', [mvpController::class, 'importDataCourses'])->middleware(['auth', 'verified'])->name('courses.import.excel');
 Route::get('/dashboard/export/courses/export', [mvpController::class, 'getPDF'])->middleware(['auth', 'verified'])->name('export.courses.export');
+
+// membuat materi
+Route::middleware(['auth', 'verified'])->prefix('dashboard/materi')->name('materi.')->group(function () {
+    Route::get('/', [MateriController::class, 'index'])->name('index');
+    Route::post('/store', [MateriController::class, 'store'])->name('store');
+}); 
