@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\baseController\HomeController;
 use App\Http\Controllers\mvpController\mvpController;
@@ -8,7 +9,7 @@ use App\Http\Controllers\mvpController\mvpController;
 
 
 // Dashboard
-Route::get('/dashboard', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [HomeController::class, 'index'])->middleware(['auth', 'verified', 'cek_metode'])->name('dashboard');
 
 // Courses
 Route::get('/dashboard/courses', [mvpController::class, 'indexCourses'])->middleware(['auth', 'verified'])->name('courses');
@@ -32,3 +33,12 @@ Route::get('/dashboard/export/courses', [mvpController::class, 'exportDataCourse
 // import data
 Route::post('/dashboard/import/courses', [mvpController::class, 'importDataCourses'])->middleware(['auth', 'verified'])->name('courses.import.excel');
 Route::get('/dashboard/export/courses/export', [mvpController::class, 'getPDF'])->middleware(['auth', 'verified'])->name('export.courses.export');
+
+// Kuis Pemilihan Peminatan Metode Belajar
+Route::middleware(['auth'])->group(function () {
+    Route::get('/quiz', [QuestionController::class, 'showKuis'])->name('quiz.show');
+    Route::post('/quiz', [QuestionController::class, 'processSetiapPertanyaan'])->name('quiz.process');
+
+    Route::post('/quiz/submit', [QuestionController::class, 'submitKuis'])->name('quiz.submit');
+    Route::get('/quiz/submit', [QuestionController::class, 'hasilKuis'])->name('hasil.quiz.submit');
+});
