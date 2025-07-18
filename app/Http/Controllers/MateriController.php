@@ -7,6 +7,20 @@ use App\Models\ModelMateri;
 
 class MateriController extends Controller
 {
+    public function edit(Request $request){
+        // \dd($request->all());
+        $materi = ModelMateri::findOrFail($request->id);
+        // \dd($materi);
+        $materi->update([
+            'title' => request('title'),
+            'link_materi' => request('link_materi'),
+            'tipe' => request('tipe'),
+            'tipe_belajar' => request('tipe_belajar'),
+            'link_gform' => request('link_gform'),
+        ]);
+        return redirect()->route('materi.index')->with('success', 'Materi berhasil diperbarui!');
+    }
+
     public function delete($id){
         $materi = ModelMateri::findOrFail($id);
         $materi->delete();

@@ -134,15 +134,22 @@
                                                         <a href="{{ $materi->link_materi }}" class="inline-block bg-blue-600 text-white px-2 py-1 rounded text-xs hover:bg-blue-700 transition align-middle">
                                                             Review Materi
                                                         </a>
-                                                        @if (Auth::user()->hasRole('guru'))
-                                                            <form action="{{ route('materi.delete', $materi->id) }}" method="POST" class="inline-block delete-materi-form align-middle">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="bg-red-600 text-white px-2 py-1 rounded text-xs hover:bg-red-700 transition">
-                                                                    Hapus
-                                                                </button>
-                                                            </form>
-                                                        @endif
+                                                        <form action="{{ route('materi.delete', $materi->id) }}" method="POST" class="inline-block delete-materi-form align-middle">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="bg-red-600 text-white px-2 py-1 rounded text-xs hover:bg-red-700 transition">
+                                                                Hapus
+                                                            </button>
+                                                        </form>
+                                                        <button type="button" class="bg-yellow-500 text-white px-2 py-1 rounded text-xs hover:bg-yellow-600 transition open-edit-modal" 
+                                                            data-id="{{ $materi->id }}"
+                                                            data-title="{{ $materi->title }}"
+                                                            data-link="{{ $materi->link_materi }}"
+                                                            data-tipe="{{ $materi->tipe }}"
+                                                            data-link_gform="{{ $materi->link_gform }}"
+                                                            data-tipe_belajar="{{ $materi->tipe_belajar }}">
+                                                            Edit
+                                                        </button>
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -173,15 +180,6 @@
                                                         <a href="{{ $materi->link_materi }}" class="inline-block bg-blue-600 text-white px-2 py-1 rounded text-xs hover:bg-blue-700 transition align-middle">
                                                             Review Materi
                                                         </a>
-                                                        @if (Auth::user()->hasRole('guru'))
-                                                            <form action="{{ route('materi.delete', $materi->id) }}" method="POST" class="inline-block delete-materi-form align-middle">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="bg-red-600 text-white px-2 py-1 rounded text-xs hover:bg-red-700 transition">
-                                                                    Hapus
-                                                                </button>
-                                                            </form>
-                                                        @endif
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -213,15 +211,6 @@
                                                         <a href="{{ $materi->link_materi }}" class="inline-block bg-blue-600 text-white px-2 py-1 rounded text-xs hover:bg-blue-700 transition align-middle">
                                                             Review Materi
                                                         </a>
-                                                        @if (Auth::user()->hasRole('guru'))
-                                                            <form action="{{ route('materi.delete', $materi->id) }}" method="POST" class="inline-block delete-materi-form align-middle">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="bg-red-600 text-white px-2 py-1 rounded text-xs hover:bg-red-700 transition">
-                                                                    Hapus
-                                                                </button>
-                                                            </form>
-                                                        @endif
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -253,15 +242,7 @@
                                                         <a href="{{ $materi->link_materi }}" class="inline-block bg-blue-600 text-white px-2 py-1 rounded text-xs hover:bg-blue-700 transition align-middle">
                                                             Review Materi
                                                         </a>
-                                                        @if (Auth::user()->hasRole('guru'))
-                                                            <form action="{{ route('materi.delete', $materi->id) }}" method="POST" class="inline-block delete-materi-form align-middle">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="bg-red-600 text-white px-2 py-1 rounded text-xs hover:bg-red-700 transition">
-                                                                    Hapus
-                                                                </button>
-                                                            </form>
-                                                        @endif
+                                                    
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -281,7 +262,83 @@
     </div>
 
 
+    <div id="editMateriModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md shadow-lg">
+            <h2 class="text-xl font-bold mb-4">Edit Materi</h2>
+            <form id="editMateriForm" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="mb-4">
+                    <label class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Judul Materi</label>
+                    <input type="text" name="title" id="edit-title" class="w-full p-2 border rounded-lg bg-gray-50 dark:bg-gray-700 dark:text-white" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Link Materi</label>
+                    <input type="text" name="link_materi" id="edit-link" class="w-full p-2 border rounded-lg bg-gray-50 dark:bg-gray-700 dark:text-white" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Tipe Materi</label>
+                    <select name="tipe" id="edit-tipe" class="w-full p-2 border rounded-lg bg-gray-50 dark:bg-gray-700 dark:text-white" required>
+                        <option value="video">Video</option>
+                        <option value="file">File</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Tipe Belajar</label>
+                    <select name="tipe_belajar" id="edit-tipe-belajar" class="w-full p-2 border rounded-lg bg-gray-50 dark:bg-gray-700 dark:text-white" required>
+                        <option value="auditori">Auditori</option>
+                        <option value="kinestetik">Kinestetik</option>
+                        <option value="visual">Visual</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Google Form</label>
+                    <input type="text" name="link_gform" id="edit-link-gform" class="w-full p-2 border rounded-lg bg-gray-50 dark:bg-gray-700 dark:text-white" required>
+                </div>
+                <div class="flex justify-end space-x-2">
+                    <button type="button" id="closeEditModal" class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500">Batal</button>
+                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
 <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const modal = document.getElementById('editMateriModal');
+        const closeBtn = document.getElementById('closeEditModal');
+        const editForm = document.getElementById('editMateriForm');
+        const titleInput = document.getElementById('edit-title');
+        const linkInput = document.getElementById('edit-link');
+        const tipeInput = document.getElementById('edit-tipe');
+        const linkGformInput = document.getElementById('edit-link-gform');
+        const tipeBelajarInput = document.getElementById('edit-tipe-belajar');
+
+        document.querySelectorAll('.open-edit-modal').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const id = this.dataset.id;
+                titleInput.value = this.dataset.title;
+                linkInput.value = this.dataset.link;
+                tipeInput.value = this.dataset.tipe;
+                linkGformInput.value = this.dataset.link_gform;
+                tipeBelajarInput.value = this.dataset.tipe_belajar;
+                editForm.action = `materi/edit/${id}`;
+                modal.classList.remove('hidden');
+            });
+        });
+
+        closeBtn.addEventListener('click', function () {
+            modal.classList.add('hidden');
+        });
+
+        // Close modal on background click
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+    });
+
     document.addEventListener('DOMContentLoaded', function () {
         const tipeMateri = document.getElementById('tipe_materi');
         const fileSection = document.getElementById('file-section');

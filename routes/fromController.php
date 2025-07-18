@@ -39,4 +39,5 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard/materi')->name('mater
     Route::get('/', [MateriController::class, 'index'])->name('index');
     Route::post('/store', [MateriController::class, 'store'])->name('store');
     Route::delete('/delete/{id}', [MateriController::class, 'delete'])->name('delete');
+    Route::put('/edit/{id}', [MateriController::class, 'edit'])->name('edit');
 });
