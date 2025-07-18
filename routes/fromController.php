@@ -38,4 +38,5 @@ Route::get('/dashboard/export/courses/export', [mvpController::class, 'getPDF'])
 Route::middleware(['auth', 'verified'])->prefix('dashboard/materi')->name('materi.')->group(function () {
     Route::get('/', [MateriController::class, 'index'])->name('index');
     Route::post('/store', [MateriController::class, 'store'])->name('store');
-}); 
+    Route::delete('/delete/{id}', [MateriController::class, 'delete'])->name('delete');
+});
