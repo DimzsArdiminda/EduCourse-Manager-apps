@@ -36,15 +36,15 @@
 
             @if (Auth::user()->hasRole('guru'))
                 <li>
-                    <a href="/"
+                    <a href="{{ route('materi.index') }}"
                         class="w-full flex  p-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 2.25c5.385 0 9.75 4.365 9.75 9.75S17.385 21.75 12 21.75 2.25 17.385 2.25 12 6.615 2.25 12 2.25Zm0 3a6.75 6.75 0 1 0 .001 13.5A6.75 6.75 0 0 0 12 5.25Z" />
+                                d="M4.5 6.75V18a2.25 2.25 0 002.25 2.25h10.5A2.25 2.25 0 0019.5 18V6.75M4.5 6.75A2.25 2.25 0 016.75 4.5h10.5A2.25 2.25 0 0119.5 6.75M4.5 6.75h15M8.25 10.5h7.5M8.25 14.25h4.5" />
                         </svg>
 
-                        <span class="flex-1 ms-3 whitespace-nowrap">Membuat Materi</span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Materi</span>
                     </a>
                 </li>
                 <li>
@@ -72,7 +72,7 @@
                     </a>
                 </li>
             @else
-                <li>
+                {{-- <li>
                     <a href="/"
                         class="w-full flex  p-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -83,7 +83,7 @@
 
                         <span class="flex-1 ms-3 whitespace-nowrap">Membaca Materi</span>
                     </a>
-                </li>
+                </li> --}}
                 <li>
                     <a href="/"
                         class="w-full flex  p-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
@@ -109,7 +109,8 @@
 
                     <span class="flex-1 ms-3 whitespace-nowrap">Course</span>
                 </a>
-            <li>
+            </li> --}}
+            {{-- <li>
                 <a href="{{ route('siswa') }}"
                     class="w-full flex  p-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -119,8 +120,8 @@
                     </svg>
                     <span class="flex-1 ms-3 whitespace-nowrap">Students</span>
                 </a>
-            </li>
-            </li>
+            </li> --}}
+            
 
             <hr class="my-4 border-gray-200 dark:border-gray-600" />
             <li>
@@ -135,22 +136,6 @@
                     <span class="ms-3">Profile</span>
                 </a>
             </li>
-            <li>
-                <button id="theme-toggle" type="button"
-                    class="w-full flex items-center p-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 ">
-                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 me-2" fill="currentColor"
-                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                    </svg>
-                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 me-2" fill="currentColor"
-                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                            fill-rule="evenodd" clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="">Toggle dark mode</span>
-                </button>
-            </li> --}}
             <li>
                 <form method="POST" action="{{ route('logout') }}" id="logout-form">
                     @csrf
