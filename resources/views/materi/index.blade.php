@@ -116,49 +116,49 @@
                 @if (Auth::user()->hasRole('guru'))
                     <h2 class="text-2xl mb-4">Daftar Materi Anda</h2>
                     <div id="materi-list">
-                        @foreach ($getAllMateri as $materi)
-                            @if ($getAllMateri->isEmpty())
-                                <div class="mb-4 p-4 bg-gray-100 dark:bg-gray-600 rounded-lg text-center">
+                        @if ($getAllMateri->isEmpty())
+                            <div class="mb-4 p-4 bg-gray-100 dark:bg-gray-600 rounded-lg text-center">
                                 <span class="text-gray-500 dark:text-gray-300">Belum ada materi yang tersedia.</span>
-                                </div>
-                            @else
-                                <div id="materi-list">
-                                @foreach ($getAllMateri as $materi)
-                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                        @foreach ($getAllMateri->chunk(6) as $materiChunk)
-                                            @foreach ($materiChunk as $materi)
-                                                <div class="mb-4 p-4 bg-gray-100 dark:bg-gray-600 rounded-lg materi-item">
-                                                    <h2 class="text-xl font-semibold materi-title">{{ $materi->title }}</h2>
-                                                    <p class="text-gray-700 dark:text-gray-300 mt-2">Tipe Materi: {{ $materi->tipe }}<br>Tipe Belajar: {{ $materi->tipe_belajar }}</p>
-                                                    <div class="flex items-center mt-3 space-x-2">
-                                                        <a href="{{ route('materi.show', $materi->id) }}" class="inline-block bg-blue-600 text-white px-2 py-1 rounded text-xs hover:bg-blue-700 transition align-middle">
-                                                            Review Materi
-                                                        </a>
-                                                        <form action="{{ route('materi.delete', $materi->id) }}" method="POST" class="inline-block delete-materi-form align-middle">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="bg-red-600 text-white px-2 py-1 rounded text-xs hover:bg-red-700 transition">
-                                                                Hapus
-                                                            </button>
-                                                        </form>
-                                                        <button type="button" class="bg-yellow-500 text-white px-2 py-1 rounded text-xs hover:bg-yellow-600 transition open-edit-modal" 
-                                                            data-id="{{ $materi->id }}"
-                                                            data-title="{{ $materi->title }}"
-                                                            data-link="{{ $materi->link_materi }}"
-                                                            data-tipe="{{ $materi->tipe }}"
-                                                            data-link_gform="{{ $materi->link_gform }}"
-                                                            data-tipe_belajar="{{ $materi->tipe_belajar }}">
-                                                            Edit
+                            </div>
+                        @else
+                            <div id="materi-list">
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    @foreach ($getAllMateri->chunk(6) as $materiChunk)
+                                        @foreach ($materiChunk as $materi)
+                                            <div class="mb-4 p-4 bg-gray-100 dark:bg-gray-600 rounded-lg materi-item">
+                                                <h2 class="text-xl font-semibold materi-title">{{ $materi->title }}</h2>
+                                                <p class="text-gray-700 dark:text-gray-300 mt-2">
+                                                    Tipe Materi: {{ $materi->tipe }}<br>
+                                                    Tipe Belajar: {{ $materi->tipe_belajar }}
+                                                </p>
+                                                <div class="flex items-center mt-3 space-x-2">
+                                                    <a href="{{ route('materi.show', $materi->id) }}" class="inline-block bg-blue-600 text-white px-2 py-1 rounded text-xs hover:bg-blue-700 transition align-middle">
+                                                        Review Materi
+                                                    </a>
+                                                    <form action="{{ route('materi.delete', $materi->id) }}" method="POST" class="inline-block delete-materi-form align-middle">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="bg-red-600 text-white px-2 py-1 rounded text-xs hover:bg-red-700 transition">
+                                                            Hapus
                                                         </button>
-                                                    </div>
+                                                    </form>
+                                                    <button type="button" class="bg-yellow-500 text-white px-2 py-1 rounded text-xs hover:bg-yellow-600 transition open-edit-modal" 
+                                                        data-id="{{ $materi->id }}"
+                                                        data-title="{{ $materi->title }}"
+                                                        data-link="{{ $materi->link_materi }}"
+                                                        data-tipe="{{ $materi->tipe }}"
+                                                        data-link_gform="{{ $materi->link_gform }}"
+                                                        data-tipe_belajar="{{ $materi->tipe_belajar }}">
+                                                        Edit
+                                                    </button>
                                                 </div>
-                                            @endforeach
+                                            </div>
                                         @endforeach
-                                    </div>
-                                @endforeach
+                                    @endforeach
                                 </div>
-                            @endif
-                        @endforeach
+                            </div>
+                        @endif
+
                     </div>
                 @elseif(Auth::user()->hasRole('siswa'))
                     <div id="materi-list">
