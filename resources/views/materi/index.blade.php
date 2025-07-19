@@ -131,7 +131,7 @@
                                                     <h2 class="text-xl font-semibold materi-title">{{ $materi->title }}</h2>
                                                     <p class="text-gray-700 dark:text-gray-300 mt-2">Tipe Materi: {{ $materi->tipe }}<br>Tipe Belajar: {{ $materi->tipe_belajar }}</p>
                                                     <div class="flex items-center mt-3 space-x-2">
-                                                        <a href="{{ $materi->link_materi }}" class="inline-block bg-blue-600 text-white px-2 py-1 rounded text-xs hover:bg-blue-700 transition align-middle">
+                                                        <a href="{{ route('materi.show', $materi->id) }}" class="inline-block bg-blue-600 text-white px-2 py-1 rounded text-xs hover:bg-blue-700 transition align-middle">
                                                             Review Materi
                                                         </a>
                                                         <form action="{{ route('materi.delete', $materi->id) }}" method="POST" class="inline-block delete-materi-form align-middle">

@@ -7,6 +7,11 @@ use App\Models\ModelMateri;
 
 class MateriController extends Controller
 {
+    public function show($id){
+        $materi = ModelMateri::findOrFail($id);
+        // \dd($materi);
+        return view('materi.show.index', compact('materi'));
+    }
     public function edit(Request $request){
         // \dd($request->all());
         $materi = ModelMateri::findOrFail($request->id);

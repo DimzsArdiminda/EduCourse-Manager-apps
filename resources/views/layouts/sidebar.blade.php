@@ -17,7 +17,7 @@
         <a href="{{ url('/dashboard') }}" class="flex items-center mb-5">
             <!-- Uncomment the line below if you also wish to use an image logo -->
             <img src="{{ asset('assets/img/logo.png') }}" alt="" class="h-8 w-8 mr-3">
-            <h1 class="text-xl font-semibold text-gray-900 dark:text-white">Educourse - Manage</h1>
+            <h1 class="text-xl font-semibold text-gray-900 dark:text-white">SiPro</h1>
         </a>
         <ul class="space-y-2 font-medium">
             <li>
