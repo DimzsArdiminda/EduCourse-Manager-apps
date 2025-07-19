@@ -41,7 +41,6 @@ class RolePermissionSeeder extends Seeder
             'name' => 'siswa',
             'guard_name' => 'web',
         ]);
-
         $studentRole->givePermissionTo([
             'mengerjakan soal',
             'melihat soal',
