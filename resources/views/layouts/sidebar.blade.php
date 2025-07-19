@@ -47,28 +47,27 @@
             </li>
 
             @if (Auth::user()->hasRole('guru'))
-                <li>
+                {{-- <li>
                     <a href="/"
-                        class="w-full flex  p-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
+                        class="w-full flex p-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 2.25c5.385 0 9.75 4.365 9.75 9.75S17.385 21.75 12 21.75 2.25 17.385 2.25 12 6.615 2.25 12 2.25Zm0 3a6.75 6.75 0 1 0 .001 13.5A6.75 6.75 0 0 0 12 5.25Z" />
+                                d="M9 17v-2a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2m-7 0h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2z" />
                         </svg>
-
                         <span class="flex-1 ms-3 whitespace-nowrap">Hasil Pengumpulan Soal</span>
                     </a>
-                </li>
+                </li> --}}
                 <li>
                     <a href="/"
                         class="w-full flex  p-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 2.25c5.385 0 9.75 4.365 9.75 9.75S17.385 21.75 12 21.75 2.25 17.385 2.25 12 6.615 2.25 12 2.25Zm0 3a6.75 6.75 0 1 0 .001 13.5A6.75 6.75 0 0 0 12 5.25Z" />
+                                d="M9 17v-2a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2m-7 0h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2z" />
                         </svg>
 
-                        <span class="flex-1 ms-3 whitespace-nowrap">Riwayat Pengerjaan Soal</span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Riwayat Soal AI </span>
                     </a>
                 </li>
             @else
