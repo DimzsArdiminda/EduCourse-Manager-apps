@@ -33,20 +33,20 @@
                     <span class="ms-3">Dashboard</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('materi.index') }}"
+                    class="w-full flex  p-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M4.5 6.75V18a2.25 2.25 0 002.25 2.25h10.5A2.25 2.25 0 0019.5 18V6.75M4.5 6.75A2.25 2.25 0 016.75 4.5h10.5A2.25 2.25 0 0119.5 6.75M4.5 6.75h15M8.25 10.5h7.5M8.25 14.25h4.5" />
+                    </svg>
+
+                    <span class="flex-1 ms-3 whitespace-nowrap">Materi</span>
+                </a>
+            </li>
 
             @if (Auth::user()->hasRole('guru'))
-                <li>
-                    <a href="{{ route('materi.index') }}"
-                        class="w-full flex  p-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M4.5 6.75V18a2.25 2.25 0 002.25 2.25h10.5A2.25 2.25 0 0019.5 18V6.75M4.5 6.75A2.25 2.25 0 016.75 4.5h10.5A2.25 2.25 0 0119.5 6.75M4.5 6.75h15M8.25 10.5h7.5M8.25 14.25h4.5" />
-                        </svg>
-
-                        <span class="flex-1 ms-3 whitespace-nowrap">Materi</span>
-                    </a>
-                </li>
                 <li>
                     <a href="/"
                         class="w-full flex  p-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
@@ -97,6 +97,7 @@
                     </a>
                 </li>
             @endif
+            
 
             {{-- <li>
                 <a href="{{ route('courses') }}"

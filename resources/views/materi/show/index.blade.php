@@ -26,7 +26,7 @@
 
                 <p class="text-gray-700 dark:text-gray-300 mt-2">Tipe Materi: {{ $materi->tipe }}<br>Tipe Belajar: {{ $materi->tipe_belajar }}</p>
                 
-                @if($materi->tipe === 'video' && Str::contains($materi->link_materi, 'youtube.com'))
+                @if($materi->tipe === 'video')
                     {{-- Preview YouTube Video --}}
                     @php
                         preg_match('/(?:v=|\/embed\/|\.be\/)([a-zA-Z0-9_-]+)/', $materi->link_materi, $matches);
@@ -37,7 +37,7 @@
                             <iframe width="855" height="315" src="https://www.youtube.com/embed/{{ $youtubeId }}" frameborder="0" allowfullscreen></iframe>
                         </div>
                     @endif
-                @elseif($materi->tipe === 'file' && Str::contains($materi->link_materi, 'drive.google.com'))
+                @elseif($materi->tipe === 'file')
                     {{-- Preview PDF Google Drive --}}
                     @php
                         // Extract file ID from Google Drive link

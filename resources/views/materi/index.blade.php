@@ -13,7 +13,7 @@
 
         {{-- form input tanggal --}}
         @if (Auth::user()->hasRole('guru'))
-            <p class="mt-4">Welcome to your profile. <br>
+            <p class="mt-4">Halaman Membuat Materi. <br>
                     Disini anda bisa membuat materi pembelajaran, siapkan link Gdrive materi anda (PDF disarankan) <br>
                     Dan anda bisa memberikan soal latihan untuk siswa anda dengan mengirimkan link Google Form yang sudah anda buat.
             </p>
@@ -107,6 +107,12 @@
                     </form>
                 </div>
             </div>
+        @else
+        <p class="mt-4">Halaman Materi. <br>
+                Disini anda bisa melihat materi pembelajaran yang telah dibuat oleh guru anda.
+                <br>
+                Silahkan pilih materi yang ingin anda pelajari.
+        </p>
         @endif
         <div class=" bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden mb-6 mt-3">
             <div class="p-6">
@@ -160,101 +166,36 @@
                         @endif
 
                     </div>
-                @elseif(Auth::user()->hasRole('siswa'))
+                @else
                     <div id="materi-list">
-                        @foreach ($getMateriAudio as $materi)
-                            @if ($getMateriAudio->isEmpty())
-                                <div class="mb-4 p-4 bg-gray-100 dark:bg-gray-600 rounded-lg text-center">
+                        @if ($getMateriUser->isEmpty())
+                            <div class="mb-4 p-4 bg-gray-100 dark:bg-gray-600 rounded-lg text-center">
                                 <span class="text-gray-500 dark:text-gray-300">Belum ada materi yang tersedia.</span>
-                                </div>
-                            @else
-                                <div id="materi-list">
-                                @foreach ($getMateriAudio as $materi)
-                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                        @foreach ($getMateriAudio->chunk(6) as $materiChunk)
-                                            @foreach ($materiChunk as $materi)
-                                                <div class="mb-4 p-4 bg-gray-100 dark:bg-gray-600 rounded-lg materi-item">
-                                                    <h2 class="text-xl font-semibold materi-title">{{ $materi->title }}</h2>
-                                                    <p class="text-gray-700 dark:text-gray-300 mt-2">Tipe Materi: {{ $materi->tipe }}<br>Tipe Belajar: {{ $materi->tipe_belajar }}</p>
-                                                    <div class="flex items-center mt-3 space-x-2">
-                                                        <a href="{{ $materi->link_materi }}" class="inline-block bg-blue-600 text-white px-2 py-1 rounded text-xs hover:bg-blue-700 transition align-middle">
-                                                            Review Materi
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        @endforeach
-                                    </div>
+                            </div>
+                        @else
+                            <div id="materi-list-audio" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                @foreach ($getMateriUser->chunk(6) as $chunk)
+                                    @foreach ($chunk as $materi)
+                                        <div class="mb-4 p-4 bg-gray-100 dark:bg-gray-600 rounded-lg materi-item">
+                                            <h2 class="text-xl font-semibold materi-title">{{ $materi->title }}</h2>
+                                            <p class="text-gray-700 dark:text-gray-300 mt-2">
+                                                Tipe Materi: {{ $materi->tipe }}<br>
+                                                Tipe Belajar: {{ $materi->tipe_belajar }}
+                                            </p>
+                                            <div class="flex items-center mt-3">
+                                                <a href="{{ route('materi.show', $materi->id) }}"
+                                                class="inline-block bg-blue-600 text-white px-2 py-1 rounded text-xs hover:bg-blue-700 transition">
+                                                    Review Materi
+                                                </a>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 @endforeach
-                                </div>
-                            @endif
-                        @endforeach
+                            </div>
+                        @endif
                     </div>
-
-                    {{-- sction visual --}}
-                    <div id="materi-list">
-                        @foreach ($getMateriVisual as $materi)
-                            @if ($getMateriVisual->isEmpty())
-                                <div class="mb-4 p-4 bg-gray-100 dark:bg-gray-600 rounded-lg text-center">
-                                <span class="text-gray-500 dark:text-gray-300">Belum ada materi yang tersedia.</span>
-                                </div>
-                            @else
-                                <div id="materi-list">
-                                @foreach ($getMateriVisual as $materi)
-                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                        @foreach ($getMateriVisual->chunk(6) as $materiChunk)
-                                            @foreach ($materiChunk as $materi)
-                                                <div class="mb-4 p-4 bg-gray-100 dark:bg-gray-600 rounded-lg materi-item">
-                                                    <h2 class="text-xl font-semibold materi-title">{{ $materi->title }}</h2>
-                                                    <p class="text-gray-700 dark:text-gray-300 mt-2">Tipe Materi: {{ $materi->tipe }}<br>Tipe Belajar: {{ $materi->tipe_belajar }}</p>
-                                                    <div class="flex items-center mt-3 space-x-2">
-                                                        <a href="{{ $materi->link_materi }}" class="inline-block bg-blue-600 text-white px-2 py-1 rounded text-xs hover:bg-blue-700 transition align-middle">
-                                                            Review Materi
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        @endforeach
-                                    </div>
-                                @endforeach
-                                </div>
-                            @endif
-                        @endforeach
-                    </div>
-
-                    {{-- sction kinestetik --}}
-                    <div id="materi-list">
-                        @foreach ($getMateriKinestetik as $materi)
-                            @if ($getMateriKinestetik->isEmpty())
-                                <div class="mb-4 p-4 bg-gray-100 dark:bg-gray-600 rounded-lg text-center">
-                                <span class="text-gray-500 dark:text-gray-300">Belum ada materi yang tersedia.</span>
-                                </div>
-                            @else
-                                <div id="materi-list">
-                                @foreach ($getMateriKinestetik as $materi)
-                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                        @foreach ($getMateriKinestetik->chunk(6) as $materiChunk)
-                                            @foreach ($materiChunk as $materi)
-                                                <div class="mb-4 p-4 bg-gray-100 dark:bg-gray-600 rounded-lg materi-item">
-                                                    <h2 class="text-xl font-semibold materi-title">{{ $materi->title }}</h2>
-                                                    <p class="text-gray-700 dark:text-gray-300 mt-2">Tipe Materi: {{ $materi->tipe }}<br>Tipe Belajar: {{ $materi->tipe_belajar }}</p>
-                                                    <div class="flex items-center mt-3 space-x-2">
-                                                        <a href="{{ $materi->link_materi }}" class="inline-block bg-blue-600 text-white px-2 py-1 rounded text-xs hover:bg-blue-700 transition align-middle">
-                                                            Review Materi
-                                                        </a>
-                                                    
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        @endforeach
-                                    </div>
-                                @endforeach
-                                </div>
-                            @endif
-                        @endforeach
-                    </div>
-
-
+                    
+                    
                 @endif
             </div>
         </div>
