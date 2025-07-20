@@ -67,7 +67,7 @@ class QuestionController extends Controller
             return redirect()->route('quiz.show')->with('error', 'Jawaban tidak ditemukan. Silakan ulangi kuis.');
         }
 
-        $counts = ['audiotory' => 0, 'visual' => 0, 'kinestetik' => 0];
+        $counts = ['audiotori' => 0, 'visual' => 0, 'kinestetik' => 0];
 
         foreach ($answers as $questionId => $answerId) {
             $answer = Answer::find($answerId);
@@ -84,18 +84,26 @@ class QuestionController extends Controller
             }
         }
 
-        $minat = array_search(max($counts), $counts);
-        if ($minat !== null) {
-            $user->minat = $minat;
+        // Ambil nilai tertinggi dan cari semua minat yang memiliki nilai tersebut
+        $maxValue = max($counts);
+        $topInterests = array_keys($counts, $maxValue);
+
+        if (count($topInterests) === 1) {
+            $user->minat = $topInterests[0];
             $user->save();
 
             session()->forget(['quiz.answers', 'quiz.current']);
 
-            return redirect()->route('hasil.quiz.submit')->with('minat', $minat);
+            return redirect()->route('hasil.quiz.submit')->with('minat', $topInterests[0]);
         }
 
-        return redirect()->route('quiz.show')->with('error', 'Gagal menentukan minat. Silakan coba lagi.');
+        // Jika ada lebih dari satu minat tertinggi, minta user memilih
+        session()->put('quiz.topInterests', $topInterests);
+        session()->forget(['quiz.answers', 'quiz.current']);
+
+        return redirect()->route('quiz.choose.minat');
     }
+
 
     public function hasilKuis()
     {
@@ -104,5 +112,31 @@ class QuestionController extends Controller
         return view('quiz.hasil', [
             'minat' => $minat,
         ]);
+    }
+
+    public function pilihMinat()
+    {
+        $topInterests = session('quiz.topInterests');
+
+        if (!$topInterests || count($topInterests) < 2) {
+            return redirect()->route('dashboard')->with('error', 'Tidak ada minat yang perlu dipilih.');
+        }
+
+        return view('quiz.choose', compact('topInterests'));
+    }
+
+    public function submitPilihMinat(Request $request)
+    {
+        $request->validate([
+            'minat' => 'required|in:audiotori,visual,kinestetik',
+        ]);
+
+        $user = auth()->user();
+        $user->minat = $request->minat;
+        $user->save();
+
+        session()->forget('quiz.topInterests');
+
+        return redirect()->route('hasil.quiz.submit')->with('minat', $request->minat);
     }
 }

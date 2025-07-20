@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ModelMateri;
+use Illuminate\Support\Facades\Auth;
 
 class MateriController extends Controller
 {
+    public function show($id){
+        $materi = ModelMateri::findOrFail($id);
+        // \dd($materi);
+        return view('materi.show.index', compact('materi'));
+    }
     public function edit(Request $request){
         // \dd($request->all());
         $materi = ModelMateri::findOrFail($request->id);
@@ -53,16 +59,21 @@ class MateriController extends Controller
     }
 
     public function index(){
+        $getMinatUser = Auth::user()->minat;
+        // dd($getMinatUser);
         $getAllMateri = ModelMateri::orderBy('created_at', 'desc')->get();
         $getMateriAudio = ModelMateri::where('tipe_belajar', 'auditori')->get();
         $getMateriVisual = ModelMateri::where('tipe_belajar', 'visual')->get();
         $getMateriKinestetik = ModelMateri::where('tipe_belajar', 'kinestetik')->get();
+
+        $getMateriUser = ModelMateri::where('tipe_belajar', $getMinatUser)->get();
+        // dd($getMateriUser);
 
         $countMateriAudio = $getMateriAudio->count();
         $countMateriVisual = $getMateriVisual->count();
         $countMateriKinestetik = $getMateriKinestetik->count();
         $countAllMateri = $getAllMateri->count();
 
-        return view('materi.index', compact('getAllMateri', 'getMateriAudio', 'getMateriVisual', 'getMateriKinestetik', 'countAllMateri', 'countMateriAudio', 'countMateriVisual', 'countMateriKinestetik'));
+        return view('materi.index', compact('getAllMateri', 'getMateriAudio', 'getMateriVisual', 'getMateriKinestetik', 'countAllMateri', 'countMateriAudio', 'countMateriVisual', 'countMateriKinestetik', 'getMateriUser'));
     }
 }

@@ -6,7 +6,7 @@
             <a href="{{ url('/') }}" class="logo d-flex align-items-center me-auto">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <img src="assets/img/logo.png" alt="">
-                <h1 class="sitename">Educourse - Manage</h1>
+                <h1 class="sitename">SiPro</h1>
             </a>
 
             <nav id="navmenu" class="navmenu">
@@ -44,8 +44,8 @@
             <div class="container">
                 <div class="row gy-4">
                     <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                        <h1 data-aos="fade-up">Manage your data with modern UI</h1>
-                        <p data-aos="fade-up" data-aos-delay="100">Experience a seamless and intuitive interface.</p>
+                        <h1 data-aos="fade-up">SiPRO: Inovasi Media Pembelajaran Digital pada Materi Kombinatorika</h1>
+                        <p data-aos="fade-up" data-aos-delay="100">dengan Penyesuaian Gaya Belajar Berbasis AI dan Etnomatematika Daerah Malang</p>
                         {{-- <div class="d-flex flex-column flex-md-row" data-aos="fade-up" data-aos-delay="200">
               <a href="#about" class="btn-get-started">Get Started <i class="bi bi-arrow-right"></i></a>
               <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center justify-content-center ms-0 ms-md-4 mt-4 mt-md-0"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>

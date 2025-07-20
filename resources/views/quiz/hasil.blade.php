@@ -1,5 +1,11 @@
 @extends('layouts.layout')
 @section('content')
+    <div class="position-absolute top-0 end-0 m-4">
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+    </div>
     <div class="d-flex align-items-center justify-content-center min-vh-100 bg-light">
         <div class="bg-white shadow rounded p-4 w-100" style="max-width: 32rem;">
             <h3 class="text-center mb-3 fw-bold text-primary">Hasil Minat Belajar Kamu</h3>
@@ -14,7 +20,7 @@
                 </p>
 
                 <ul class="mt-4 list-unstyled text-center text-dark">
-                    @if ($minat === 'audiotory')
+                    @if ($minat === 'audiotori')
                         <li class="d-flex align-items-center justify-content-center gap-2 mb-2"><span>🔊</span> Mendengarkan
                             penjelasan guru</li>
                         <li class="d-flex align-items-center justify-content-center gap-2 mb-2"><span>🎧</span> Belajar
@@ -32,7 +38,7 @@
                     @endif
                 </ul>
                 <div class="d-flex align-items-center justify-content-center mt-4">
-                    <a href="{{ route('dashboard') }}" class="btn btn-primary px-4">Kembali ke Dashboard</a>
+                    <a href="{{ route('dashboard') }}" class="btn btn-primary px-4">Menuju ke Dashboard</a>
                 </div>
             @else
                 <p class="text-center text-muted">Belum ada hasil yang bisa ditampilkan.</p>

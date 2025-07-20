@@ -46,6 +46,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('/quiz/submit', [QuestionController::class, 'submitKuis'])->name('quiz.submit');
     Route::get('/quiz/submit', [QuestionController::class, 'hasilKuis'])->name('hasil.quiz.submit');
+
+    Route::get('/quiz/pilih-minat', [QuestionController::class, 'pilihMinat'])->name('quiz.choose.minat');
+    Route::post('/quiz/pilih-minat', [QuestionController::class, 'submitPilihMinat'])->name('quiz.choose.minat.submit');
 });
 
 // membuat materi
@@ -54,6 +57,7 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard/materi')->name('mater
     Route::post('/store', [MateriController::class, 'store'])->name('store');
     Route::delete('/delete/{id}', [MateriController::class, 'delete'])->name('delete');
     Route::put('/edit/{id}', [MateriController::class, 'edit'])->name('edit');
+    Route::get('/show/{id}', [MateriController::class, 'show'])->name('show');
 });
 
 // gemini routes
