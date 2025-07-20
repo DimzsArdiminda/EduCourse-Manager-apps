@@ -4,7 +4,7 @@
     <div class="position-absolute top-0 end-0 m-4">
         <form action="{{ route('logout') }}" method="POST">
             @csrf
-            <button type="submit" class="btn btn-outline-danger">Logout</button>
+            <button type="submit" class="btn btn-danger">Logout</button>
         </form>
     </div>
 
@@ -51,7 +51,7 @@
                             <p class="h5 text-success fw-semibold">Anda sudah menyelesaikan kuis ini.</p>
                         </div>
                         <div class="d-flex justify-content-center mt-4">
-                            <a href="{{ route('dashboard') }}" class="btn btn-info text-white">Kembali ke Dashboard</a>
+                            <a href="{{ route('dashboard') }}" class="btn btn-primary text-white">Menuju ke Dashboard</a>
                         </div>
                     @endif
                 </div>

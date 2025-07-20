@@ -45,6 +45,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('/quiz/submit', [QuestionController::class, 'submitKuis'])->name('quiz.submit');
     Route::get('/quiz/submit', [QuestionController::class, 'hasilKuis'])->name('hasil.quiz.submit');
+
+    Route::get('/quiz/pilih-minat', [QuestionController::class, 'pilihMinat'])->name('quiz.choose.minat');
+    Route::post('/quiz/pilih-minat', [QuestionController::class, 'submitPilihMinat'])->name('quiz.choose.minat.submit');
 });
 
 // membuat materi

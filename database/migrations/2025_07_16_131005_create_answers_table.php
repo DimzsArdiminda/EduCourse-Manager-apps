@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('question_id')->constrained()->onDelete('cascade');
             $table->string('teks_jawaban');
-            $table->enum('type', ['audiotory', 'visual', 'kinestetik']);
+            $table->enum('type', ['audiotori', 'visual', 'kinestetik']);
             $table->timestamps();
         });
     }
