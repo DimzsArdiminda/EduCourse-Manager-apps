@@ -16,43 +16,115 @@ class QuestionSeeder extends Seeder
     {
         $questions = [
             [
-                'pertanyaan' => 'Ketika belajar, kamu lebih suka...',
+                'pertanyaan' => '1.	Saya sangat suka...',
                 'answers' => [
-                    ['teks_jawaban' => 'Mendengarkan penjelasan guru', 'type' => 'audiotory'],
-                    ['teks_jawaban' => 'Melihat gambar atau diagram', 'type' => 'visual'],
-                    ['teks_jawaban' => 'Melakukan praktik langsung', 'type' => 'kinestetik'],
+                    ['teks_jawaban' => 'Mencatat', 'type' => 'visual'],
+                    ['teks_jawaban' => 'Bercerita', 'type' => 'audiotori'],
+                    ['teks_jawaban' => 'Menjiplak', 'type' => 'kinestetik'],
                 ],
             ],
             [
-                'pertanyaan' => 'Saat membaca buku, kamu lebih menikmati...',
+                'pertanyaan' => '2.	Saya suka membaca dengan...',
                 'answers' => [
-                    ['teks_jawaban' => 'Mendengarkan buku audio', 'type' => 'audiotory'],
-                    ['teks_jawaban' => 'Melihat ilustrasi dan grafik', 'type' => 'visual'],
-                    ['teks_jawaban' => 'Menyalin ulang atau membuat catatan', 'type' => 'kinestetik'],
+                    ['teks_jawaban' => 'Cepat', 'type' => 'visual'],
+                    ['teks_jawaban' => 'Suara keras', 'type' => 'audiotori'],
+                    ['teks_jawaban' => 'Jari sebagai penunjuk', 'type' => 'kinestetik'],
                 ],
             ],
             [
-                'pertanyaan' => 'Jika diminta menghafal, kamu lebih suka...',
+                'pertanyaan' => '3.	Saya paling suka belajar dengan...',
                 'answers' => [
-                    ['teks_jawaban' => 'Membaca dengan suara keras', 'type' => 'audiotory'],
-                    ['teks_jawaban' => 'Melihat gambar atau video', 'type' => 'visual'],
-                    ['teks_jawaban' => 'Berjalan sambil menghafal', 'type' => 'kinestetik'],
+                    ['teks_jawaban' => 'Membaca', 'type' => 'visual'],
+                    ['teks_jawaban' => 'Mendengarkan', 'type' => 'audiotori'],
+                    ['teks_jawaban' => 'Bergerak', 'type' => 'kinestetik'],
                 ],
             ],
             [
-                'pertanyaan' => 'Ketika belajar kelompok, kamu cenderung...',
+                'pertanyaan' => '4.	Saya mudah mengingat dengan apa yang...',
                 'answers' => [
-                    ['teks_jawaban' => 'Mendengarkan dan berdiskusi', 'type' => 'audiotory'],
-                    ['teks_jawaban' => 'Menggunakan catatan atau diagram', 'type' => 'visual'],
-                    ['teks_jawaban' => 'Bermain peran atau praktik langsung', 'type' => 'kinestetik'],
+                    ['teks_jawaban' => 'Saya lihat', 'type' => 'visual'],
+                    ['teks_jawaban' => 'Saya dengar', 'type' => 'audiotori'],
+                    ['teks_jawaban' => 'Saya tulis', 'type' => 'kinestetik'],
                 ],
             ],
             [
-                'pertanyaan' => 'Untuk memahami pelajaran, kamu paling terbantu dengan...',
+                'pertanyaan' => '5.	Apabila mencatat, saya...',
                 'answers' => [
-                    ['teks_jawaban' => 'Penjelasan verbal', 'type' => 'audiotory'],
-                    ['teks_jawaban' => 'Tampilan slide atau gambar', 'type' => 'visual'],
-                    ['teks_jawaban' => 'Simulasi atau praktik langsung', 'type' => 'kinestetik'],
+                    ['teks_jawaban' => 'Banyak catatan disertai gambar', 'type' => 'visual'],
+                    ['teks_jawaban' => 'Sedikit mencatat karena lebih suka mendengarkan', 'type' => 'audiotori'],
+                    ['teks_jawaban' => 'Banyak catatan namun tidak disertai gambar', 'type' => 'kinestetik'],
+                ],
+            ],
+            [
+                'pertanyaan' => '6.	Saya menjawab pertanyaan dengan jawaban...',
+                'answers' => [
+                    ['teks_jawaban' => 'Ya atau tidak', 'type' => 'visual'],
+                    ['teks_jawaban' => 'Panjang lebar (suka bercerita)', 'type' => 'audiotori'],
+                    ['teks_jawaban' => 'Diikuti dengan gerkan anggota tubuh', 'type' => 'kinestetik'],
+                ],
+            ],
+            [
+                'pertanyaan' => '7.	Saat belajar saya...',
+                'answers' => [
+                    ['teks_jawaban' => 'Tidak mudah terganggu dengan keributan', 'type' => 'visual'],
+                    ['teks_jawaban' => 'Mudah terganggu dengan keributan', 'type' => 'audiotori'],
+                    ['teks_jawaban' => 'Tidak dapat duduk diam dalam waktu lama', 'type' => 'kinestetik'],
+                ],
+            ],
+            [
+                'pertanyaan' => '8.	Saya mengingat dengan cara...',
+                'answers' => [
+                    ['teks_jawaban' => 'Membayangkan', 'type' => 'visual'],
+                    ['teks_jawaban' => 'Mengucapkan', 'type' => 'audiotori'],
+                    ['teks_jawaban' => 'Sambil berjalan dan melihat', 'type' => 'kinestetik'],
+                ],
+            ],
+            [
+                'pertanyaan' => '9.	Saya berbicara lebih suka...',
+                'answers' => [
+                    ['teks_jawaban' => 'Melihat wajah langsung', 'type' => 'visual'],
+                    ['teks_jawaban' => 'Lewat telepon', 'type' => 'audiotori'],
+                    ['teks_jawaban' => 'Memperhatikan Gerakan tubuh', 'type' => 'kinestetik'],
+                ],
+            ],
+            [
+                'pertanyaan' => '10. Ketika berbicara saya...',
+                'answers' => [
+                    ['teks_jawaban' => 'Cepat', 'type' => 'visual'],
+                    ['teks_jawaban' => 'Intonasi/berirama', 'type' => 'audiotori'],
+                    ['teks_jawaban' => 'Lambat', 'type' => 'kinestetik'],
+                ],
+            ],
+            [
+                'pertanyaan' => '11. Cara saya belajar bisanya suka...',
+                'answers' => [
+                    ['teks_jawaban' => 'Mengikuti petunjuk gambar', 'type' => 'visual'],
+                    ['teks_jawaban' => 'Sambil berbicara', 'type' => 'audiotori'],
+                    ['teks_jawaban' => 'Berbicara sambil menulis', 'type' => 'kinestetik'],
+                ],
+            ],
+            [
+                'pertanyaan' => '12. Saya sering mengisi waktu luang dengan...',
+                'answers' => [
+                    ['teks_jawaban' => 'Menonton', 'type' => 'visual'],
+                    ['teks_jawaban' => 'Mendengarkan music', 'type' => 'audiotori'],
+                    ['teks_jawaban' => 'Bermain game', 'type' => 'kinestetik'],
+                ],
+            ],
+            [
+                'pertanyaan' => '13. Saya lebih mudah memahami pelajaran dengan...',
+                'answers' => [
+                    ['teks_jawaban' => 'Melihat peraga', 'type' => 'visual'],
+                    ['teks_jawaban' => 'Berdiskusi', 'type' => 'audiotori'],
+                    ['teks_jawaban' => 'Praktik', 'type' => 'kinestetik'],
+                ],
+            ],
+            [
+                'pertanyaan' => '14. Saya lebih menyukai...',
+                'answers' => [
+                    ['teks_jawaban' => 'Gambar', 'type' => 'visual'],
+                    ['teks_jawaban' => 'Musik', 'type' => 'audiotori'],
+                    ['teks_jawaban' => 'Permainan', 'type' => 'kinestetik'],
                 ],
             ],
         ];
