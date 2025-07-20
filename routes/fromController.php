@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GeminiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
@@ -53,4 +54,10 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard/materi')->name('mater
     Route::post('/store', [MateriController::class, 'store'])->name('store');
     Route::delete('/delete/{id}', [MateriController::class, 'delete'])->name('delete');
     Route::put('/edit/{id}', [MateriController::class, 'edit'])->name('edit');
+});
+
+// gemini routes
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/gemini', [GeminiController::class, 'showForm'])->name('gemini.form');
+    Route::post('/gemini/generate', [GeminiController::class, 'generateText'])->name('gemini.generate');
 });
