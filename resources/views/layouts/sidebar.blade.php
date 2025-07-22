@@ -84,7 +84,7 @@
                     </a>
                 </li> --}}
                 <li>
-                    <a href="/"
+                    <a href="{{ route('generate.soal') }}"
                         class="w-full flex  p-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">

@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\GeminiController;
+use App\Http\Controllers\GenerateSoalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\baseController\HomeController;
+use App\Http\Controllers\LatihanSoalController;
 use App\Http\Controllers\mvpController\mvpController;
 use App\Http\Controllers\MateriController;
 
@@ -60,8 +61,16 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard/materi')->name('mater
     Route::get('/show/{id}', [MateriController::class, 'show'])->name('show');
 });
 
-// gemini routes
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/gemini', [GeminiController::class, 'showForm'])->name('gemini.form');
-    Route::post('/gemini/generate', [GeminiController::class, 'generateText'])->name('gemini.generate');
+Route::middleware(['auth'])->prefix('dashboard')->group(function () {
+    // Generate Soal Routes
+    Route::get('/generate-soal', [GenerateSoalController::class, 'index'])->name('generate.soal');
+    Route::get('/generate-soal/generate', [GenerateSoalController::class, 'generateSoalForm'])->name('generate.soal.form');
+    Route::post('/generate-soal/generate', [GenerateSoalController::class, 'generateSoalResult'])->name('generate.soal.generated');
+
+    // Quiz Routes
+    Route::post('/quiz/start', [GenerateSoalController::class, 'startQuiz'])->name('quiz.start');
+    Route::get('/quiz/{sessionId}', [GenerateSoalController::class, 'showQuiz'])->name('quiz.show');
+    Route::post('/quiz/{sessionId}/submit', [GenerateSoalController::class, 'submitAnswer'])->name('quiz.submit');
+    Route::get('/quiz/{sessionId}/result', [GenerateSoalController::class, 'showResult'])->name('quiz.result');
+    Route::get('/quiz-history', [GenerateSoalController::class, 'quizHistory'])->name('quiz.history');
 });
