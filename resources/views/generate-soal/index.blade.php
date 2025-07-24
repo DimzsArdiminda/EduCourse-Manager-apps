@@ -29,7 +29,7 @@
                     Mulai Generate
                 </div>
             </a>
-            <a href="{{ route('quiz.history') }}">
+            <a href="{{ route('quiz.session.history') }}">
                 <div class="p-4 dark:bg-gray-700 dark:text-gray-200 shadow-md rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition">
                     <h2 class="text-lg font-semibold">Riwayat Pengerjaan Soal</h2>
                     Lihat Riwayat

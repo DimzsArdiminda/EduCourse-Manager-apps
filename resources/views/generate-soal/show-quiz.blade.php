@@ -7,13 +7,13 @@
             <div class="flex justify-between items-center text-white">
                 <h2 class="text-2xl font-bold">Kuis - {{ ucfirst($quizSession->tingkatan) }}</h2>
                 <div class="text-right">
-                    <p class="text-sm text-gray-300">Mulai: {{ $quizSession->started_at->format('d/m/Y H:i') }}</p>
+                    <p class="text-sm text-gray-300">Tanggal: {{ $quizSession->started_at->format('d/m/Y') }}</p>
                     <p class="text-lg font-semibold">{{ $quizSession->total_soal }} Soal</p>
                 </div>
             </div>
         </div>
 
-        <form action="{{ route('quiz.submit', $quizSession->id) }}" method="POST" id="quizForm">
+        <form action="{{ route('quiz.session.submit', $quizSession->id) }}" method="POST" id="quizForm">
             @csrf
             <div class="space-y-6">
                 @foreach ($quizSession->answers as $answer)

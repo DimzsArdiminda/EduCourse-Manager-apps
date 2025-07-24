@@ -68,9 +68,9 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::post('/generate-soal/generate', [GenerateSoalController::class, 'generateSoalResult'])->name('generate.soal.generated');
 
     // Quiz Routes
-    Route::post('/quiz/start', [GenerateSoalController::class, 'startQuiz'])->name('quiz.start');
-    Route::get('/quiz/{sessionId}', [GenerateSoalController::class, 'showQuiz'])->name('quiz.show');
-    Route::post('/quiz/{sessionId}/submit', [GenerateSoalController::class, 'submitAnswer'])->name('quiz.submit');
-    Route::get('/quiz/{sessionId}/result', [GenerateSoalController::class, 'showResult'])->name('quiz.result');
-    Route::get('/quiz-history', [GenerateSoalController::class, 'quizHistory'])->name('quiz.history');
+    Route::post('/quiz/start', [GenerateSoalController::class, 'startQuiz'])->name('quiz.session.start');
+    Route::get('/quiz/{quizSessionId}', [GenerateSoalController::class, 'showQuiz'])->name('quiz.session.show');
+    Route::post('/quiz/{quizSessionId}/submit', [GenerateSoalController::class, 'submitAnswer'])->name('quiz.session.submit');
+    Route::get('/quiz/{quizSessionId}/result', [GenerateSoalController::class, 'showResult'])->name('quiz.session.result');
+    Route::get('/quiz-history', [GenerateSoalController::class, 'quizHistory'])->name('quiz.session.history');
 });

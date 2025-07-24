@@ -52,14 +52,14 @@
                 <h2 class="text-2xl font-bold">Kumpulan Soal</h2>
                 @if (isset($soals) && is_array($soals))
                     <div class="flex space-x-3">
-                        <form action="{{ route('quiz.start') }}" method="POST" class="inline">
+                        <form action="{{ route('quiz.session.start') }}" method="POST" class="inline">
                             @csrf
                             <button type="submit"
                                 class="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition font-medium">
                                 🎯 Mulai Kuis
                             </button>
                         </form>
-                        <a href="{{ route('quiz.history') }}"
+                        <a href="{{ route('quiz.session.history') }}"
                             class="px-6 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition font-medium">
                             📈 Riwayat Kuis
                         </a>
@@ -102,7 +102,7 @@
                 @endforeach
 
                 <div class="mt-8 p-4 bg-gray-800 rounded-lg text-center">
-                    <form action="{{ route('quiz.start') }}" method="POST" class="inline">
+                    <form action="{{ route('quiz.session.start') }}" method="POST" class="inline">
                         @csrf
                         <button type="submit"
                             class="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition font-bold text-lg">
