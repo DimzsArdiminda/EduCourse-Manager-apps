@@ -1,4 +1,3 @@
-{{-- resources/views/quiz/result.blade.php --}}
 @extends('layouts.master-layout')
 
 @section('content')
@@ -80,7 +79,7 @@
                 class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium">
                 🔄 Buat Kuis Baru
             </a>
-            <a href="{{ route('quiz.history') }}"
+            <a href="{{ route('quiz.session.history') }}"
                 class="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition font-medium">
                 📈 Lihat Riwayat
             </a>

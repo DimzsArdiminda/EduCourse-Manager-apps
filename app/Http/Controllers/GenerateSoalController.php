@@ -135,7 +135,7 @@ Tanpa kalimat pembuka, tanpa penjelasan, dan hasilkan hanya JSON valid.";
             ]);
         }
 
-        return redirect()->route('quiz.show', $quizSession->id);
+        return redirect()->route('quiz.session.show', $quizSession->id);
     }
 
     public function showQuiz($sessionId)
@@ -147,7 +147,7 @@ Tanpa kalimat pembuka, tanpa penjelasan, dan hasilkan hanya JSON valid.";
         }
 
         if ($quizSession->status === 'completed') {
-            return redirect()->route('quiz.result', $sessionId);
+            return redirect()->route('quiz.session.result', $sessionId);
         }
 
         return view('generate-soal.show-quiz', compact('quizSession'));
@@ -201,7 +201,7 @@ Tanpa kalimat pembuka, tanpa penjelasan, dan hasilkan hanya JSON valid.";
 
         $quizSession->calculateScore();
 
-        return redirect()->route('quiz.result', $sessionId);
+        return redirect()->route('quiz.session.result', $sessionId);
     }
 
     public function showResult($sessionId)
