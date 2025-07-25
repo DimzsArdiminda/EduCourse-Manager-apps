@@ -42,7 +42,7 @@ class GenerateSoalController extends Controller
         $tingkatan = $request->input('tingkatan');
         $jumlah = $request->input('jumlah');
 
-        $prompt = "Buatkan saya $jumlah soal pilihan ganda matematika dengan topik peluang untuk siswa SMA dan sederajat dengan tingkat kesulitan $tingkatan. Tampilkan hasil dalam format JSON array dengan struktur seperti ini:
+        $prompt = "Buatkan saya $jumlah soal pilihan ganda matematika dengan topik kombinatorika secara acak untuk siswa SMA dan sederajat dengan tingkat kesulitan $tingkatan. Tampilkan hasil dalam format JSON array dengan struktur seperti ini:
 [
   {
     \"pertanyaan\": \"...\",
