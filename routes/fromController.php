@@ -62,7 +62,7 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard/materi')->name('mater
     Route::get('/show/{id}', [MateriController::class, 'show'])->name('show');
 });
 
-Route::middleware(['auth'])->prefix('dashboard')->group(function () {
+Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () {
     // Generate Soal Routes
     Route::get('/generate-soal', [GenerateSoalController::class, 'index'])->name('generate.soal');
     Route::get('/generate-soal/generate', [GenerateSoalController::class, 'generateSoalForm'])->name('generate.soal.form');
