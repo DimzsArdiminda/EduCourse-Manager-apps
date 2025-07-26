@@ -6,6 +6,7 @@ use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\baseController\HomeController;
 use App\Http\Controllers\LatihanSoalController;
+use App\Http\Controllers\LinkPenugasana;
 use App\Http\Controllers\mvpController\mvpController;
 use App\Http\Controllers\MateriController;
 
@@ -59,6 +60,15 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard/materi')->name('mater
     Route::delete('/delete/{id}', [MateriController::class, 'delete'])->name('delete');
     Route::put('/edit/{id}', [MateriController::class, 'edit'])->name('edit');
     Route::get('/show/{id}', [MateriController::class, 'show'])->name('show');
+});
+
+// pengumpulan tugas
+Route::middleware(['auth', 'verified'])->prefix('dashboard/pengumplan-tugas')->name('pengumpulan.')->group(function () {
+    Route::get('/', [LinkPenugasana::class, 'index'])->name('index');
+    Route::post('/store', [LinkPenugasana::class, 'store'])->name('store');
+    Route::delete('/delete/{id}', [LinkPenugasana::class, 'delete'])->name('delete');
+    Route::put('/edit/{id}', [LinkPenugasana::class, 'update'])->name('edit');
+    Route::get('/show/{id}', [LinkPenugasana::class, 'show'])->name('show');
 });
 
 Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () {
