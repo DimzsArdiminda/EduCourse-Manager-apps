@@ -121,8 +121,19 @@
                     <span class="flex-1 ms-3 whitespace-nowrap">Students</span>
                 </a>
             </li> --}}
-
-
+            <li>
+                <a href="{{ route('pengumpulan.index') }}"
+                    class="w-full flex p-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M17.25 6.75v-1.5a2.25 2.25 0 0 0-2.25-2.25h-6a2.25 2.25 0 0 0-2.25 2.25v1.5m0 0h10.5m-10.5 0v10.5a2.25 2.25 0 0 0 2.25 2.25h6a2.25 2.25 0 0 0 2.25-2.25V6.75m-10.5 0h10.5" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 12h6m-6 3h6" />
+                    </svg>
+                    <span class="ms-3">Penugasan</span>
+                </a>
+            </li>
             <hr class="my-4 border-gray-200 dark:border-gray-600" />
             <li>
                 <a href="{{ route('profile.edit') }}"
