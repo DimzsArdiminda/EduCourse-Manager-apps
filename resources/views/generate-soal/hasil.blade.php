@@ -4,8 +4,23 @@
     <div class="max-w-4xl mx-auto mt-10">
         {{-- Header Hasil --}}
         <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-6 mb-6 text-white">
-            <h2 class="text-3xl font-bold mb-2">🎉 Hasil Kuis</h2>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
+            <h2 class="text-3xl font-bold mb-2">🎉 Hasil Kuis </h2>
+            <p class="text-sm">Waktu Penyelesaian: <span id="waktu-indo-{{ $quizSession->id }}"></span></p>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const waktu = new Date("{{ $quizSession->completed_at->format('Y-m-d H:i:s') }}");
+                    waktu.setHours(waktu.getHours() + 7);
+                    const formatted = waktu.toLocaleString('id-ID', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    }).replace(',', ' ');
+                    document.getElementById('waktu-indo-{{ $quizSession->id }}').textContent = formatted;
+                });
+            </script>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mt-4">
                 <div class="bg-white/20 rounded-lg p-4 text-center">
                     <p class="text-2xl font-bold">{{ $quizSession->benar }}</p>
                     <p class="text-sm">Benar</p>
@@ -21,6 +36,10 @@
                 <div class="bg-white/20 rounded-lg p-4 text-center">
                     <p class="text-2xl font-bold">{{ ucfirst($quizSession->tingkatan) }}</p>
                     <p class="text-sm">Tingkat</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4 text-center">
+                    <p class="text-2xl font-bold">{{ ucfirst($quizSession->jenis_materi) }}</p>
+                    <p class="text-sm">Jenis Materi</p>
                 </div>
             </div>
         </div>
@@ -78,15 +97,24 @@
         </div>
 
         {{-- Action Buttons --}}
-        <div class="mt-8 text-center space-x-4">
-            <a href="{{ route('generate.soal') }}"
-                class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium">
-                🔄 Buat Kuis Baru
-            </a>
-            <a href="{{ route('quiz.session.history') }}"
-                class="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition font-medium">
-                📈 Lihat Riwayat
-            </a>
-        </div>
+        @if (Auth::user() && Auth::user()->hasRole('guru'))
+            <div class="mt-8 text-center space-x-4 mb-10">
+                <a href="{{ route('riwayat.pengerjaan.soal') }}"
+                    class="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition font-medium">
+                    📈 Lihat Riwayat
+                </a>
+            </div>
+        @else
+            <div class="mt-8 text-center space-x-4 mb-10">
+                <a href="{{ route('generate.soal') }}"
+                    class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium">
+                    🔄 Buat Kuis Baru
+                </a>
+                <a href="{{ route('quiz.session.history') }}"
+                    class="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition font-medium">
+                    📈 Lihat Riwayat
+                </a>
+            </div>
+        @endif
     </div>
 @endsection
