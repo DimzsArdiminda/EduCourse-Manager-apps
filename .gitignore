@@ -8,8 +8,9 @@
 /vendor
 .env
 .env.backup
-.env.production
+.env.prod
 .phpactor.json
+htaccess
 
 .phpunit.result.cache
 Homestead.json
@@ -22,5 +23,8 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+
+*.zip
+
 
 note.md
