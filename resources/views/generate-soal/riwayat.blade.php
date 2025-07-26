@@ -15,18 +15,18 @@
                                     Kuis {{ ucfirst($session->tingkatan) }} - {{ $session->total_soal }} soal
                                 </h3>
                                 <p class="text-sm text-gray-300 mb-1">
-                                    Dikerjakan: {{ $session->completed_at->format('d/m/Y H:i') }}
+                                    Dikerjakan: {{ $session->completed_at->format('d/m/Y') }}
                                 </p>
                             </div>
                             <div class="text-right">
                                 <div class="flex space-x-4 mb-2">
                                     <div class="text-center">
-                                        <p class="text-2xl font-bold text-green-400">{{ $session->benar }}</p>
-                                        <p class="text-xs text-gray-400">Benar</p>
-                                    </div>
-                                    <div class="text-center">
-                                        <p class="text-2xl font-bold text-red-400">{{ $session->salah }}</p>
-                                        <p class="text-xs text-gray-400">Salah</p>
+                                        @if($session->skor == 0)
+                                            <p class="text-2xl font-bold text-red-500">{{ intval($session->skor) }}</p>
+                                        @else
+                                            <p class="text-2xl font-bold text-green-400">{{ intval($session->skor) }}</p>
+                                        @endif
+                                        <p class="text-xs text-gray-400">Skor akhir</p>
                                     </div>
                                 </div>
                                 <a href="{{ route('quiz.session.result', $session->id) }}"

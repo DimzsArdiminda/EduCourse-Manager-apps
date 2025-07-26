@@ -192,9 +192,12 @@ Tanpa kalimat pembuka, tanpa penjelasan, dan hasilkan hanya JSON valid.";
             }
         }
 
+        $skor_hasil = ($benar / $quizSession->total_soal) * 100;
+
         $quizSession->update([
             'benar' => $benar,
             'salah' => $salah,
+            'skor' => $skor_hasil,
             'status' => 'completed',
             'completed_at' => now()
         ]);
