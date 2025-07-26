@@ -14,6 +14,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('tingkatan');
             $table->json('soals');
+            $table->string('jenis_materi');
             $table->integer('total_soal');
             $table->integer('benar')->default(0);
             $table->integer('salah')->default(0);

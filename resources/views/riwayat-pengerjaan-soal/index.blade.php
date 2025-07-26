@@ -11,23 +11,27 @@
                         <div class="flex justify-between items-start">
                             <div>
                                 <h3 class="text-lg font-semibold text-yellow-400 mb-2">
-                                    Kuis {{ ucfirst($session->tingkatan) }} - {{ $session->total_soal }} soal
+                                    Nama siswa: {{ ucfirst($session->user->name) }}<br>
                                 </h3>
                                 <p class="text-sm text-gray-300 mb-1">
-                                    Dikerjakan: {{ $session->completed_at->format('d/m/Y') }}
+                                    Dikerjakan: <span id="waktu-indo-{{ $session->id }}"></span> WIB
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            const waktu = new Date("{{ $session->completed_at->format('Y-m-d H:i:s') }}");
+                                            waktu.setHours(waktu.getHours() + 7);
+                                            const formatted = waktu.toLocaleString('id-ID', {
+                                                day: '2-digit',
+                                                month: '2-digit',
+                                                year: 'numeric',
+                                                hour: '2-digit',
+                                                minute: '2-digit'
+                                            }).replace(',', ' ');
+                                            document.getElementById('waktu-indo-{{ $session->id }}').textContent = formatted;
+                                        });
+                                    </script>
                                 </p>
                             </div>
                             <div class="text-right">
-                                <div class="flex space-x-4 mb-2">
-                                    <div class="text-center">
-                                        @if($session->skor == 0)
-                                            <p class="text-2xl font-bold text-red-500">{{ intval($session->skor) }}</p>
-                                        @else
-                                            <p class="text-2xl font-bold text-green-400">{{ intval($session->skor) }}</p>
-                                        @endif
-                                        <p class="text-xs text-gray-400">Skor akhir</p>
-                                    </div>
-                                </div>
                                 <a href="{{ route('quiz.session.result', $session->id) }}"
                                     class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm">
                                     Lihat Detail
@@ -43,12 +47,7 @@
             </div>
         @else
             <div class="bg-gray-800 rounded-lg p-8 text-center text-white">
-                <p class="text-xl mb-4">📝 Belum ada riwayat kuis</p>
-                <p class="text-gray-400 mb-6">Mulai dengan membuat dan mengerjakan kuis pertama Anda!</p>
-                <a href="{{ route('generate.soal') }}"
-                    class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium">
-                    Buat Kuis Pertama
-                </a>
+                <p class="text-xl mb-4">📝 Belum ada riwayat kuis dari siswa</p>
             </div>
         @endif
     </div>

@@ -23,6 +23,7 @@ Route::middleware(['auth', 'role:guru', 'verified'])->group(function () {
     Route::delete('/dashboard/courses/{id}', [mvpController::class, 'deleteDataCourses'])->name('courses.delete');
     Route::post('/dashboard/courses/add-bro', [mvpController::class, 'addDataCourse'])->name('courses.add.bro');
     Route::post('/dashboard/courses/update-bro', [mvpController::class, 'UpdateDataCourse'])->name('courses.update.bro');
+    Route::get('/dashboard/riwayat-pengerjaan-soal', [GenerateSoalController::class, 'quizHistoryGuru'])->name('riwayat.pengerjaan.soal');
 
     // Siswa
     Route::get('/dashboard/siswa', [mvpController::class, 'indexSiswa'])->name('siswa');
