@@ -52,7 +52,7 @@ class RolePermissionSeeder extends Seeder
             'email' => 'guru@mail.com',
             'password' => bcrypt('password'),
         ]);
-
+        
         $teacher->assignRole($teacherRole);
 
     }

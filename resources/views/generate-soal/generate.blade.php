@@ -24,6 +24,20 @@
                 @enderror
             </div>
             <div>
+                <label for="jenis_materi" class="block mb-2 text-sm font-medium text-white">Jenis Materi</label>
+                <select name="jenis_materi" id="jenis_materi"
+                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-black">
+                    <option value="" class="text-black">-- Pilih Jenis Materi --</option>
+                    <option value="permutasi" class="text-black" {{ old('jenis_materi') == 'permutasi' ? 'selected' : '' }}>
+                        Permutasi</option>
+                    <option value="kombinasi" class="text-black" {{ old('jenis_materi') == 'kombinasi' ? 'selected' : '' }}>
+                        Kombinasi</option>
+                </select>
+                @error('jenis_materi')
+                    <div class="mt-1 text-sm text-red-600">{{ $message }}</div>
+                @enderror
+            </div>
+            <div>
                 <label for="jumlah" class="block mb-2 text-sm font-medium text-white">Jumlah Soal</label>
                 <input type="number" name="jumlah" id="jumlah"
                     class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-black"
@@ -79,7 +93,6 @@
                         <strong>Jumlah Soal:</strong> {{ count($soals) }} soal
                     </p>
                 </div>
-
                 @foreach ($soals as $index => $soal)
                     <div class="mb-6 p-4 bg-gray-800 rounded-lg">
                         <h3 class="font-semibold mb-2 text-yellow-400">Soal {{ $index + 1 }}:</h3>

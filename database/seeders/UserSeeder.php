@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
             'name' => 'dimas',
             'email' => 'dimas@gmail.com',
             'password' => bcrypt('password'),
+            'minat' => 'visual'
         ]);
     }
 }

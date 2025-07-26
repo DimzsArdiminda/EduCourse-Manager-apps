@@ -17,7 +17,7 @@ class GenerateSoalController extends Controller
 
     public function __construct()
     {
-        $this->apiKey = env('GEMINI_API_KEY');
+        $this->apiKey = "AIzaSyBBzzalzgpTfk5AGpanns08pz2OWacK6jI";
         $this->apiUrl = 'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-pro:generateContent?key=' . $this->apiKey;
         $this->httpClient = new Client();
     }
@@ -36,13 +36,15 @@ class GenerateSoalController extends Controller
     {
         $request->validate([
             'tingkatan' => 'required|string|in:mudah,sedang,sulit',
+            'jenis_materi' => 'required|string',
             'jumlah' => 'required|integer|min:1',
         ]);
 
         $tingkatan = $request->input('tingkatan');
+        $jenis_materi = $request->input('jenis_materi');
         $jumlah = $request->input('jumlah');
 
-        $prompt = "Buatkan saya $jumlah soal pilihan ganda matematika dengan topik kombinatorika secara acak untuk siswa SMA dan sederajat dengan tingkat kesulitan $tingkatan. Tampilkan hasil dalam format JSON array dengan struktur seperti ini:
+        $prompt = "Buatkan saya $jumlah soal pilihan ganda matematika dengan topik $jenis_materi yang dilengkapi soal cerita budaya/etno daerah malang secara acak untuk siswa SMA dan sederajat dengan tingkat kesulitan $tingkatan. Tampilkan hasil dalam format JSON array dengan struktur seperti ini:
 [
   {
     \"pertanyaan\": \"...\",
@@ -88,11 +90,12 @@ Tanpa kalimat pembuka, tanpa penjelasan, dan hasilkan hanya JSON valid.";
                 $parsedJson = json_decode($rawText, true);
 
                 if (json_last_error() === JSON_ERROR_NONE) {
-                    session(['generated_soals' => $parsedJson, 'tingkatan' => $tingkatan]);
+                    session(['generated_soals' => $parsedJson, 'tingkatan' => $tingkatan, 'jenis_materi' => $jenis_materi]);
 
                     return view('generate-soal.generate', [
                         'soals' => $parsedJson,
-                        'tingkatan' => $tingkatan
+                        'tingkatan' => $tingkatan,
+                        'jenis_materi' => $jenis_materi
                     ]);
                 } else {
                     return view('generate-soal.generate', [
@@ -110,8 +113,9 @@ Tanpa kalimat pembuka, tanpa penjelasan, dan hasilkan hanya JSON valid.";
 
     public function startQuiz(Request $request)
     {
-        $soals = session('generated_soals');
         $tingkatan = session('tingkatan');
+        $soals = session('generated_soals');
+        $jenis_materi = session('jenis_materi');
 
         if (!$soals) {
             return redirect()->back()->with('error', 'Tidak ada soal yang tersedia. Silakan generate soal terlebih dahulu.');
@@ -121,6 +125,7 @@ Tanpa kalimat pembuka, tanpa penjelasan, dan hasilkan hanya JSON valid.";
             'user_id' => Auth::id(),
             'tingkatan' => $tingkatan,
             'soals' => $soals,
+            'jenis_materi' => $jenis_materi,
             'total_soal' => count($soals),
             'started_at' => now()
         ]);
@@ -142,10 +147,6 @@ Tanpa kalimat pembuka, tanpa penjelasan, dan hasilkan hanya JSON valid.";
     {
         $quizSession = QuizSession::with('answers')->findOrFail($sessionId);
 
-        if ($quizSession->user_id !== Auth::id()) {
-            abort(403);
-        }
-
         if ($quizSession->status === 'completed') {
             return redirect()->route('quiz.session.result', $sessionId);
         }
@@ -161,10 +162,6 @@ Tanpa kalimat pembuka, tanpa penjelasan, dan hasilkan hanya JSON valid.";
         ]);
 
         $quizSession = QuizSession::findOrFail($sessionId);
-
-        if ($quizSession->user_id !== Auth::id()) {
-            abort(403);
-        }
 
         $answers = $request->input('answers');
         $benar = 0;
@@ -211,10 +208,6 @@ Tanpa kalimat pembuka, tanpa penjelasan, dan hasilkan hanya JSON valid.";
     {
         $quizSession = QuizSession::with('answers')->findOrFail($sessionId);
 
-        if ($quizSession->user_id !== Auth::id()) {
-            abort(403);
-        }
-
         return view('generate-soal.hasil', compact('quizSession'));
     }
 
@@ -223,8 +216,13 @@ Tanpa kalimat pembuka, tanpa penjelasan, dan hasilkan hanya JSON valid.";
         $quizSessions = QuizSession::where('user_id', Auth::id())
             ->where('status', 'completed')
             ->orderBy('completed_at', 'desc')
-            ->paginate(10);
+            ->paginate(5);
 
         return view('generate-soal.riwayat', compact('quizSessions'));
+    }
+
+    public function quizHistoryGuru() {
+        $quizSessions = QuizSession::paginate(5);
+        return view('riwayat-pengerjaan-soal.index', compact('quizSessions'));
     }
 }

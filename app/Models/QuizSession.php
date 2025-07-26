@@ -14,6 +14,7 @@ class QuizSession extends Model
         'user_id',
         'tingkatan',
         'soals',
+        'jenis_materi',
         'total_soal',
         'benar',
         'salah',

@@ -17,8 +17,8 @@ return Application::configure(basePath: dirname(__DIR__))
             ],
         );
         $middleware->alias([
-            "role" => \Spatie\Permission\Http\Middleware\RoleMiddleware::class,
-            "cek_metode" => \App\Http\Middleware\CekMetode::class,
+            'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
+            'cek_metode' => \App\Http\Middleware\CekMetode::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
