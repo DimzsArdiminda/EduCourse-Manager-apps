@@ -5,7 +5,7 @@
         {{-- Header Hasil --}}
         <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-6 mb-6 text-white">
             <h2 class="text-3xl font-bold mb-2">🎉 Hasil Kuis</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
                 <div class="bg-white/20 rounded-lg p-4 text-center">
                     <p class="text-2xl font-bold">{{ $quizSession->benar }}</p>
                     <p class="text-sm">Benar</p>
@@ -13,6 +13,10 @@
                 <div class="bg-white/20 rounded-lg p-4 text-center">
                     <p class="text-2xl font-bold">{{ $quizSession->salah }}</p>
                     <p class="text-sm">Salah</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4 text-center">
+                    <p class="text-2xl font-bold">{{ intval($quizSession->skor) }}</p>
+                    <p class="text-sm">Skor Akhir</p>
                 </div>
                 <div class="bg-white/20 rounded-lg p-4 text-center">
                     <p class="text-2xl font-bold">{{ ucfirst($quizSession->tingkatan) }}</p>
