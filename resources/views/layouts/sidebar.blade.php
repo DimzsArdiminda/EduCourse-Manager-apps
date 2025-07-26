@@ -96,7 +96,7 @@
                     </a>
                 </li>
             @endif
-            
+
 
             {{-- <li>
                 <a href="{{ route('courses') }}"
@@ -121,7 +121,7 @@
                     <span class="flex-1 ms-3 whitespace-nowrap">Students</span>
                 </a>
             </li> --}}
-            
+
 
             <hr class="my-4 border-gray-200 dark:border-gray-600" />
             <li>
@@ -155,7 +155,4 @@
             </li>
         </ul>
     </div>
-
-
-
 </aside>
