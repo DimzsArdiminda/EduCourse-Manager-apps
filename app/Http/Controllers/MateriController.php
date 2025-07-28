@@ -41,7 +41,7 @@ class MateriController extends Controller
             'tipe_materi' => 'required|in:video,file',
             'link_materi' => 'url|nullable',
             'link_video' => 'url|nullable',
-            'link_gform' => 'required|url',
+            'link_gform' => 'nullable|url',
             'tipe_ajaran' => 'required|in:auditori,kinestetik,visual',
         ]);
         // \dd($request->all());
