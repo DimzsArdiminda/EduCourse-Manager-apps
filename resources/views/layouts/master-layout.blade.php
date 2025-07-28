@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+
      <!-- Fonts -->
      <link rel="preconnect" href="https://fonts.bunny.net">
      <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -15,7 +15,7 @@
     @vite(['resources/css/app.css','resources/js/app.js'])
 
     <style>
-        
+
     .dataTables_wrapper .dataTables_paginate .paginate_button {
         padding: 0.5rem 1rem;
         margin: 0 0.25rem;
@@ -85,7 +85,7 @@
             color: #d1d5db;
         }
     }
-    
+
 
      /* Styling untuk Dropdown (Length Menu) */
      .dataTables_wrapper .dataTables_length select {
@@ -133,7 +133,7 @@
 <body class="font-sans antialiased ">
     @include('layouts.sidebar')
 
-    <div class="min-h-screen dark:bg-gray-700 dark:text-gray-200  ">
+    <div class="min-h-screen dark:bg-gray-700 dark:text-gray-200 overflow-hidden">
         <div class="p-4 sm:ml-64">
             @yield('content')
         </div>
@@ -144,11 +144,11 @@
 {{-- <script src="https://cdn.datatables.net/v/dt/dt-2.2.1/r-3.0.3/rr-1.5.0/sc-2.4.3/sb-1.8.1/sp-2.3.3/sl-3.0.0/datatables.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    
+
     <script src="{{ asset('/app.js') }}"></script>
 
- 
-    
+
+
    <script>
             // JavaScript untuk membuka dan menutup modal
     document.addEventListener('DOMContentLoaded', () => {

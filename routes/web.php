@@ -25,6 +25,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/tentang-kami', function() {
+    return view('tentang');
+});
+
 
 require __DIR__ . '/auth.php';
 include 'fromController.php';
