@@ -13,7 +13,6 @@
                         <a href="#" class="text-black nav-link font-bold">Beranda</a>
                         <a href="#tentang" class="text-black nav-link font-bold">Tentang Kami</a>
                         <a href="#fitur-unggulan" class="text-black nav-link font-bold">Fitur Unggulan</a>
-                        <a href="#kontak" class="text-black nav-link font-bold">Kontak</a>
                     </div>
                     <div class="hidden md:flex items-center space-x-4">
                         @if (Auth::check())
@@ -53,7 +52,6 @@
                     <a href="#" class="block text-black font-bold">Beranda</a>
                     <a href="#tentang" class="block text-black font-bold">Tentang Kami</a>
                     <a href="#fitur-unggulan" class="block text-black font-bold">Fitur Unggulan</a>
-                    <a href="#kontak" class="block text-black font-bold">Kontak</a>
                     @if (Auth::check())
                         <a href="{{ route('dashboard') }}" class="block text-black">Dashboard</a>
                         <form method="POST" action="{{ route('logout') }}">
@@ -139,7 +137,7 @@
     </div>
 
     {{-- Fitur Unggulan --}}
-    <div class="pt-10" id="fitur">
+    <div class="pt-10" id="fitur-unggulan">
         <h1 class="text-3xl md:text-5xl font-extrabold text-black text-center mt-20">
             Fitur Unggulan SiPRO
         </h1>
